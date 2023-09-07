@@ -86,11 +86,10 @@ function AddPost() {
         })
             .then(response => response.json())
             .then(newPosts => {
-            // Call onAdd or perform any other necessary action after adding the post
                 setPosts([...posts, newPosts])
                 setContent('');
                 setTitle('');
-                const src = document.getElementById('show-img') as HTMLInputElement;
+                let src = document.getElementById('show-img') as HTMLInputElement;
                 src.src = '';
         })
         .catch(error => {
@@ -152,7 +151,7 @@ function AddPost() {
                         <label htmlFor="content">
                             <h6>Enter Content</h6>
                         </label>
-                <span id="errorcontent">{contentError}</span>
+                        <span id="errorcontent">{contentError}</span>
                         <span id="charCount">0/10000</span>
                     </div>
                     <button id="submit" className="btn btn-primary text-center border-0" onClick={handleSubmit}>Create Post</button>
