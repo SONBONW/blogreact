@@ -8,7 +8,7 @@ function MainAuthor() {
         <InforAuthor />
             <section className="list-post">
                 <h4 className="title">Latest Post</h4>
-           <RenderPost title = {""}/>
+           <RenderPost title = {"Load More"}/>
         </section>
     </main>
     );

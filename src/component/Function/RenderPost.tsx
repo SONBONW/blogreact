@@ -21,7 +21,7 @@ function RenderPost({title} : getTitle) {
       <div className="posts row gx-md-4">
         <GetData postQuantity={postShow} />
       </div>
-      <button className=" view rounded d-flex justify-content-center align-items-center" onClick={handlerClickViewPost}>
+      <button className="view rounded d-flex justify-content-center align-items-center" onClick={handlerClickViewPost}>
                 {title}
       </button>
     </>
