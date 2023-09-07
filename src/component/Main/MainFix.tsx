@@ -59,7 +59,6 @@ function MainFix() {
             console.log(files);
             return require(`../asset/img/${getFileNameFromPath(files)}`);
         }
-        
     }
 
     const handlerFix = (event: React.FormEvent) => {
@@ -80,8 +79,6 @@ function MainFix() {
         })
         .then(response => response.json())
             .then(fixPost => {
-                alert(fixPost);
-                console.log(fixPost)
                 setPosts(fixPost);
         })
         .catch(error => {
@@ -102,7 +99,7 @@ function MainFix() {
                             <input type="text" className="form-control" id="title" placeholder="Enter Title Post"
                                 aria-label="Title" aria-describedby="basic-addon1"
                                 value={titles}
-                            onChange={e => setTitle(e.target.value)}/> 
+                                onChange={e => setTitle(e.target.value)}/> 
                         </label>
                         <span id="errortitle"></span>
                     </div>
@@ -121,7 +118,7 @@ function MainFix() {
                         <textarea className="form-control" placeholder="Enter Content" id="content"
                             style={{ height: '350px' }}
                             value={contents}
-                        onChange={e => setContent(e.target.value)}></textarea>
+                            onChange={e => setContent(e.target.value)}></textarea>
                         <label htmlFor="content">
                             <h6>Enter Content</h6>
                         </label>
