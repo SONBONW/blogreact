@@ -1,0 +1,110 @@
+body {
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+li,
+a {
+  text-decoration: none;
+  list-style: none;
+  color: var(--secondary-600);
+}
+
+/*Font Work Sans*/
+
+@font-face {
+  font-family: 'WorkSansBold';
+  src: url(../src/component/asset/font/Work-Sans/WorkSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'WorkSansSemiBold';
+  src: url(../src/component/asset/font/Work-Sans/WorkSans-SemiBold.ttf);
+
+}
+
+@font-face {
+  font-family: 'WorkSansMedium';
+  src: url(../src/component/asset/font/Work-Sans/WorkSans-Medium.ttf);
+
+}
+
+@font-face {
+  font-family: 'WorkSansRegular';
+  src: url(../src/component/asset/font/Work-Sans/WorkSans-Regular.ttf);
+
+}
+
+/*Font Plus Jakarta Sans*/
+
+@font-face {
+  font-family: 'PlusJakartaSansRegular';
+  src: url(../src/component/asset/font/Plus-Jakarta-Sans/PlusJakartaSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'PlusJakartaSansSemiBold';
+  src: url(../src/component/asset/font/Plus-Jakarta-Sans/PlusJakartaSans-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: 'PlusJakartaSansExtraBold';
+  src: url(../src/component/asset/font/Plus-Jakarta-Sans/PlusJakartaSans-ExtraBold.ttf);
+}
+
+/*Font Inter*/
+
+@font-face {
+  font-family: 'InterRegular';
+  src: url(../src/component/asset/font/Inter/Inter-Regular.ttf);
+}
+
+/*Font Source Serif Pro */
+
+@font-face {
+  font-family: 'SourceSerifProRegular';
+  src: url(../src/component/asset/font/source-serif-pro/SourceSerifPro-Regular.ttf);
+}
+
+
+:root {
+  --fz-24: 24px;
+  --btn-primary: rgba(75, 107, 251, 1);
+  --secondary-500: #696A75;
+  --secondary-100: #e8e8ea;
+  --secondary-600: #3b3c4a;
+  --secondary-800: #181a2a;
+  --secondary-100-f: #f4f4f5;
+  --secondary-200: #dcdddf;
+  --var-color-white: #fff;
+  --secondary-50: #F6F6F7;
+  --secondary-900: #141624;
+  --secondary-400: #97989f;
+  --secondary-300: #BABABF;
+  --secondary-700: #242535;
+  --font-WorkSansBold: 'WorkSansBold';
+  --font-WorkSansSemiBold: 'WorkSansSemiBold';
+  --font-WorkSansMedium: 'WorkSansMedium';
+  --font-WorkSansRegular: 'WorkSansRegular';
+  --font-PlusJakartaSansRegular: 'PlusJakartaSansRegular';
+  --font-PlusJakartaSansSemiBold: 'PlusJakartaSansSemiBold';
+  --font-PlusJakartaSansExtraBold: 'PlusJakartaSansExtraBold';
+  --font-InterRegular: 'InterRegular';
+  --font-SourceSerifProRegular: 'SourceSerifProRegular';
+  /* --font-SourceSerifProSemibold: 'SourceSerifProSemibold'; */
+  --font-w4: 400;
+  --font-w5: 500;
+  --font-w6: 600;
+  --font-w7: 700;
+  --font-w8: 800;
+}
