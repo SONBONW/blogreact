@@ -6,9 +6,11 @@ import DeletePost from './DeletePost';
 import '../asset/style/layout.css'
 import GetData from './GetData';
 
+interface getTitle {
+  title : string
+}
 
-
-function RenderPost() {
+function RenderPost({title} : getTitle) {
   const [postShow, setPostShow] = useState(9);
   const handlerClickViewPost = () => {
     setPostShow(postShow + 9);
@@ -16,12 +18,11 @@ function RenderPost() {
 
   return (
     <>
-      <h4 className="title">Latest Post</h4>
       <div className="posts row gx-md-4">
         <GetData postQuantity={postShow} />
       </div>
       <button className=" view rounded d-flex justify-content-center align-items-center" onClick={handlerClickViewPost}>
-                View All Post
+                {title}
       </button>
     </>
   );

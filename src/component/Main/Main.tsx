@@ -14,7 +14,8 @@ function Main() {
             <Advertisement />
 
         <section className="list-post">
-            <RenderPost />
+            <h4 className="title">Latest Post</h4>
+                <RenderPost title = {"View All Post"} />
         </section>
         <Advertisement />
     </main>

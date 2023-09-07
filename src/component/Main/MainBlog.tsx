@@ -17,12 +17,7 @@ function MainBlog() {
         </section>
             <InforHighLightBlog />
         <section className="list-post">
-            <div className="posts row gx-md-4 custorm-row">
-                <RenderPost />
-            </div>
-            <button className=" view rounded d-flex justify-content-center align-items-center">
-                Load More
-            </button>
+                <RenderPost title = {"Load More"}/>
         </section>
         <Advertisement />
     </main>
