@@ -38,7 +38,7 @@ function GetData({ postQuantity } : GetDataProps) {
 
     const listPost = posts.slice(0, postQuantity).map((post: any) => {
         const imgSrc = require(`../asset/img/${post.img}`);
-        // const avatarSrc = require(`../asset/img/${post.user.avatar}`);
+        const avatarSrc = require(`../asset/img/${post.user.avatar}`);
         const id = post.id;
 
         return (
@@ -53,7 +53,7 @@ function GetData({ postQuantity } : GetDataProps) {
                     <h4>{post.title}</h4>
                     <div className="infor-user">
                         <div className="user">
-                            <img className="img-fluid" src={("avatarSrc")} alt="" />
+                            <img className="img-fluid" src={(avatarSrc)} alt="" />
                             <span>{post.user.username}</span>
                         </div>
                         <span className="time">{post.time}</span>
