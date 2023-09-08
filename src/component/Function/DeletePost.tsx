@@ -1,60 +1,42 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import { error } from 'console';
-
+import React, { useState } from 'react';
+import conFigDataPost from './GetDataPost';
+import conFigDataTotal from './GetDataTotal';
 
 interface DeleteProps {
   onDelete: () => void;
-  postId: number; // Thêm prop postId để truyền id bài viết cần xóa
+  postId: number;
 }
 
-const DeletePost: React.FC<DeleteProps> = ({ onDelete }) => {
-const [posts, setPosts] = useState([]);
-  const handleDeletePost = (postId: number) => {
-    fetch(`http://localhost:3000/posts/${postId}`, {
-      method: 'DELETE',
-    })
-      .then(() => {
-        const updatedPosts = posts.filter((post: any) => post.id !== postId);
-        setPosts(updatedPosts);
-        onDelete();
-      })
-      .catch(error => {
-        console.error('Error deleting post:', error);
-      });
-};
+const DeletePost: React.FC<DeleteProps> = ({ onDelete, postId }) => {
+  const [total, setTotal] = useState<number | undefined>(0);
 
-  // const updateTotalCount = () => {
-  //   fetch('http://localhost:3000/total')
-  //     .then(res => res.json())
-  //     .then(total => {
-  //       const newTotal = total.count - 1;
-  //       fetch('http://localhost:3000/total', {
-  //         method: 'PUT',
-  //         body: JSON.stringify({ count: newTotal }),
-  //         headers: {
-  //         'Content-Type': 'application/json',
-  //         },
-  //       })
-  //         .then(res => res.json())
-  //         .then(() => {
-  //         onDelete(); // Gọi hàm onDelete khi cập nhật thành công
-  //         })
-  //       })
-  //     .catch(error => {
-  //       console.error('Error updating total count:', error);
-  //   })
-    
-  // };
+  const handlerDeletePost = async (postId: number) => {
+    try {
+      await conFigDataPost.deletePost(postId.toString());
+      
+      // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
+      if (total !== undefined) {
+        const total = await conFigDataTotal.getCount();
+        const newCount = total - 1;
+        await conFigDataTotal.updateCount(newCount);
+        setTotal(newCount);
+      }
+
+      onDelete();
+    } catch {
+      throw new Error('Can not delete post');
+    }
+  };
 
 
   return (
-      <button
-          type="button"
-          className="btn-close btn-delete"
-          aria-label="Close"
-          onClick={onDelete}>
-      </button>
+    <button
+      type="button"
+      className="btn-close btn-delete"
+      aria-label="Close"
+      onClick={() => handlerDeletePost(postId)}
+    ></button>
   );
-}
+};
+
 export default DeletePost;

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeletePost from './DeletePost';
 import '../asset/style/layout.css'
-import GetData from './GetData';
+import GetPost from './GetPost';
 
 interface getTitle {
   title : string
@@ -19,7 +19,7 @@ function RenderPost({title} : getTitle) {
   return (
     <>
       <div className="posts row gx-md-4">
-        <GetData postQuantity={postShow} />
+        <GetPost postQuantity={postShow} />
       </div>
       <button className="view rounded d-flex justify-content-center align-items-center" onClick={handlerClickViewPost}>
                 {title}

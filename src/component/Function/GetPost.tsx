@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 import DeletePost from "./DeletePost";
+import conFigDataPost from "./GetDataPost";
 
 interface GetDataProps {
     postQuantity: number; // Xác định kiểu dữ liệu của postQuantity là number
@@ -14,8 +15,8 @@ function GetData({ postQuantity } : GetDataProps) {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/posts')
-            .then(res => res.json())
+        // Sử dụng conFigDataPost để lấy danh sách bài viết
+        conFigDataPost.getPost()
             .then(posts => {
                 setPosts(posts);
             })
@@ -24,23 +25,22 @@ function GetData({ postQuantity } : GetDataProps) {
             });
     }, [])
 
-    const handleDeletePost = (postId: number) => {
-        fetch(`http://localhost:3000/posts/${postId}`, {
-          method: 'DELETE',
-        })
-          .then(() => {
-            const updatedPosts = posts.filter((post: any) => post.id !== postId);
-            setPosts(updatedPosts);
-          })
-          .catch(error => {
-            console.error('Error deleting post:', error);
-          });
+    const handleDeletePost = async (postId: number) => {
+        try {
+            // Gọi component DeletePost để xóa bài viết
+            // Sau khi xóa thành công, component này sẽ gọi onDelete để thông báo
+            // Cập nhật danh sách bài viết sau khi xóa
+            setPosts(posts.filter((post: any) => post.id !== postId));
+        } catch {
+            throw new Error('Can not delete post');
+        }
     };
 
     const listPost = posts.slice(0, postQuantity).map((post: any) => {
         const imgSrc = require(`../asset/img/${post.img}`);
         // const avatarSrc = require(`../asset/img/${post.user.avatar}`);
         const id = post.id;
+
         return (
             <div className="col-lg-4 col-md-6 col-sm-8 col-12" key={post.id}>
                 <article className="post" >

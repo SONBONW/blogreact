@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DateTimeFormatOptions } from 'intl';
+import conFigDataPost from "./GetDataPost";
+import conFigDataTotal from "./GetDataTotal";
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -19,7 +22,6 @@ const getFileNameFromPath = (filePath: string) => {
 
 
 interface Post {
-  id: number;
   img: string;
   tag: string;
   title: string;
@@ -42,10 +44,11 @@ function AddPost() {
     const [fileError, setFileError] = useState("");
     const [contentError, setContentError] = useState("");
     const [posts, setPosts] = useState<Post[]>([]);
+    const [total, setTotal] = useState();
 
     
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         
          if (!title) {
@@ -64,7 +67,8 @@ function AddPost() {
     }
         const link = document.getElementById('post-img') as HTMLInputElement;
         const replaceLink = getFileNameFromPath(link.value);
-        const data = {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        const newPost = {
             title: title,
             img: replaceLink,
             tag: 'Technology',
@@ -77,25 +81,37 @@ function AddPost() {
         };
 
 
-        fetch('http://localhost:3000/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => response.json())
-            .then(newPosts => {
-                setPosts([...posts, newPosts])
-                setContent('');
-                setTitle('');
-                let src = document.getElementById('show-img') as HTMLInputElement;
-                src.src = '';
-        })
-        .catch(error => {
-            console.error('Error adding post:', error);
-        });
+         try {
+      // Gọi hàm addPost từ conFigDataPost để thêm bài viết
+             const addedPost = await conFigDataPost.addPost(newPost);
+              // Cập nhật danh sách bài viết sau khi thêm
+             setPosts([...posts, addedPost]);
+
+            // Gọi hàm getCount từ conFigDataTotal để lấy giá trị total hiện tại
+            const currentTotal = await conFigDataTotal.getCount();
+
+            // Cập nhật count bằng cách tăng thêm 1
+            const newTotal = currentTotal + 1;
+
+            // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
+             await conFigDataTotal.updateCount(newTotal);
+             setTotal(newTotal);
+     
+
+      // Đặt lại trạng thái của biểu mẫu để chuẩn bị thêm bài viết khác
+      setContent('');
+      setTitle('');
+      let src = document.getElementById('show-img') as HTMLInputElement;
+      src.src = '';
+             
+    
+    } catch (error) {
+      console.error('Lỗi khi thêm bài viết:', error);
+    }
+
+   
     };
+
 
     
     const handleTitleChange = (event: { target: { value: any; }; }) => {
@@ -113,11 +129,9 @@ function AddPost() {
    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
        setSelectedFile(file || null);
-       console.log(file);
 
     if (file) {
         const fileUrl = URL.createObjectURL(file);
-        console.log(fileUrl);
         const imgElement = document.getElementById("show-img") as HTMLImageElement;
         imgElement.src = fileUrl;
     }
