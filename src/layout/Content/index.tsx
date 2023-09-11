@@ -22,6 +22,7 @@ const Content: React.FunctionComponent = () => {
       <Route path="/author/*" element={<Author />} />
       <Route path="/create/*" element={<Create />} />
       <Route path="/fix/*" element={<Fix />} />
+      <Route path="/contact/*" element={<h1> Have not main page for Contact </h1>} />
     </Routes>
   );
 };

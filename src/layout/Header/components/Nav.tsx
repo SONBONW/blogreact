@@ -82,7 +82,7 @@ function Nav() {
       </li>
       <li className="nav-item item">
         <Link
-          to="/"
+          to="/contact"
           className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
         >
           Contact
