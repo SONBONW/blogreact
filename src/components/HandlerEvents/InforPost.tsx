@@ -3,16 +3,29 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import DeletePost from './DeletePost';
-import conFigDataPost from './GetDataPost';
+import DeletePost from '../ButtonDelete';
+import conFigDataPost from '../../services/post';
 
 interface GetDataProps {
   postQuantity: number; // Xác định kiểu dữ liệu của postQuantity là number
 }
 
-function GetData({ postQuantity }: GetDataProps) {
+interface Post {
+  id: number;
+  img: string;
+  tag: string;
+  title: string;
+  time: string;
+  user: {
+    username: string;
+    avatar: string;
+  };
+  content: string;
+}
+
+function InforPost({ postQuantity }: GetDataProps) {
   const [error, setError] = useState(null);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[] | undefined>();
 
   useEffect(() => {
     // Sử dụng conFigDataPost để lấy danh sách bài viết
@@ -31,13 +44,13 @@ function GetData({ postQuantity }: GetDataProps) {
       // Gọi component DeletePost để xóa bài viết
       // Sau khi xóa thành công, component này sẽ gọi onDelete để thông báo
       // Cập nhật danh sách bài viết sau khi xóa
-      setPosts(posts.filter((post: any) => post.id !== postId));
+      setPosts(posts!.filter((post: any) => post.id !== postId));
     } catch {
       throw new Error('Can not delete post');
     }
   };
 
-  const listPost = posts.slice(0, postQuantity).map((post: any) => {
+  const listPost = posts ? posts.slice(0, postQuantity).map((post: any) => {
     const imgSrc = require(`../../asset/img/${post.img}`);
     const avatarSrc = require(`../../asset/img/${post.user.avatar}`);
     const id = post.id;
@@ -46,7 +59,7 @@ function GetData({ postQuantity }: GetDataProps) {
       <div className="col-lg-4 col-md-6 col-sm-8 col-12" key={post.id}>
         <article className="post">
           <DeletePost
-            onDelete={() => handleDeletePost(post.id)}
+            onDeleteSuccess={() => handleDeletePost(post.id)}
             postId={post.id}
           />
           <img className="img-fluid" src={imgSrc} alt="" />
@@ -67,8 +80,8 @@ function GetData({ postQuantity }: GetDataProps) {
         </article>
       </div>
     );
-  });
+  }) : [];
   return <div className="posts row gx-md-4">{listPost}</div>;
 }
 
-export default GetData;
+export default InforPost;

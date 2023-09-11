@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { DateTimeFormatOptions } from 'intl';
-import conFigDataPost from './GetDataPost';
-import conFigDataTotal from './GetDataTotal';
+import conFigDataPost from '../../services/post';
+import conFigDataTotal from '../../services/total';
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);

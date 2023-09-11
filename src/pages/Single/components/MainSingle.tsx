@@ -1,14 +1,30 @@
 import React from 'react';
-import InforHighLightSingle from '../../../components/Feature/InforHighLightSingle';
-import Advertisement from '../../../components/Feature/Advertisement';
+import Advertisement from '../../../components/Advertisement/Advertisement';
 import user1 from '../../../asset/img/img1.png';
 import user2 from '../../../asset/img/img2.png';
+import user from '../../../asset/img/img-user7.png';
+
 
 function MainSingle() {
   return (
     <main className="container custorm-container px-0 ">
       <div className="single-post m-auto">
-        <InforHighLightSingle />
+        <section>
+      <div className="form-introduce">
+        <span className="tag rounded">Technology</span>
+        <h2>
+          The Impact of Technology on the Workplace: <br /> How Technology is
+          Changing
+        </h2>
+        <div className="infor-user">
+          <div className="user">
+            <img className="img-fluid" src={user} alt="" />
+            <span>Jason Francisco</span>
+          </div>
+          <time>August 20, 2022</time>
+        </div>
+      </div>
+    </section>
         <img className="img-fluid" src={user1} alt="" />
         <section>
           <article>

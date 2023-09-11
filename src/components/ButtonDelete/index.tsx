@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import conFigDataPost from './GetDataPost';
-import conFigDataTotal from './GetDataTotal';
+import conFigDataPost from '../../services/post';
+import conFigDataTotal from '../../services/total';
 
 interface DeleteProps {
-  onDelete: () => void;
+  onDeleteSuccess: () => void;
   postId: number;
 }
 
-const DeletePost: React.FC<DeleteProps> = ({ onDelete, postId }) => {
+const DeletePost: React.FC<DeleteProps> = (props) => {
+  const { onDeleteSuccess, postId } = props;
   const [total, setTotal] = useState<number | undefined>(0);
 
   const handlerDeletePost = async (postId: number) => {
@@ -21,8 +22,7 @@ const DeletePost: React.FC<DeleteProps> = ({ onDelete, postId }) => {
         await conFigDataTotal.updateCount(newCount);
         setTotal(newCount);
       }
-
-      onDelete();
+      onDeleteSuccess();
     } catch {
       throw new Error('Can not delete post');
     }

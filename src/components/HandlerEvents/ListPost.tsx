@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import DeletePost from './DeletePost';
-import GetPost from './GetPost';
+import DeletePost from '../ButtonDelete';
+import GetPost from './InforPost';
 
 interface getTitle {
   title: string;
