@@ -1,5 +1,5 @@
 import React from 'react';
-import Advertisement from '../../../components/Advertisement/Advertisement';
+import Advertisement from '../../../components/Advertisement';
 import RenderPost from '../../../components/HandlerEvents/ListPost';
 import { Link } from 'react-router-dom';
 import img from '../../../asset/img/img.png';

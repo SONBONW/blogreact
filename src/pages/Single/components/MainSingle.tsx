@@ -1,5 +1,5 @@
 import React from 'react';
-import Advertisement from '../../../components/Advertisement/Advertisement';
+import Advertisement from '../../../components/Advertisement';
 import user1 from '../../../asset/img/img1.png';
 import user2 from '../../../asset/img/img2.png';
 import user from '../../../asset/img/img-user7.png';

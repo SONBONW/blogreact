@@ -1,5 +1,5 @@
 import React from 'react';
-import Advertisement from '../../../components/Advertisement/Advertisement';
+import Advertisement from '../../../components/Advertisement';
 import RenderPost from '../../../components/HandlerEvents/ListPost';
 import img from '../../../asset/img/img.png';
 import user from '../../../asset/img/img-user1.png';
