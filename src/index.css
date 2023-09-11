@@ -12,7 +12,6 @@ code {
     monospace;
 }
 
-
 li,
 a {
   text-decoration: none;
@@ -30,19 +29,16 @@ a {
 @font-face {
   font-family: 'WorkSansSemiBold';
   src: url(../src/component/asset/font/Work-Sans/WorkSans-SemiBold.ttf);
-
 }
 
 @font-face {
   font-family: 'WorkSansMedium';
   src: url(../src/component/asset/font/Work-Sans/WorkSans-Medium.ttf);
-
 }
 
 @font-face {
   font-family: 'WorkSansRegular';
   src: url(../src/component/asset/font/Work-Sans/WorkSans-Regular.ttf);
-
 }
 
 /*Font Plus Jakarta Sans*/
@@ -76,21 +72,20 @@ a {
   src: url(../src/component/asset/font/source-serif-pro/SourceSerifPro-Regular.ttf);
 }
 
-
 :root {
   --fz-24: 24px;
   --btn-primary: rgba(75, 107, 251, 1);
-  --secondary-500: #696A75;
+  --secondary-500: #696a75;
   --secondary-100: #e8e8ea;
   --secondary-600: #3b3c4a;
   --secondary-800: #181a2a;
   --secondary-100-f: #f4f4f5;
   --secondary-200: #dcdddf;
   --var-color-white: #fff;
-  --secondary-50: #F6F6F7;
+  --secondary-50: #f6f6f7;
   --secondary-900: #141624;
   --secondary-400: #97989f;
-  --secondary-300: #BABABF;
+  --secondary-300: #bababf;
   --secondary-700: #242535;
   --font-WorkSansBold: 'WorkSansBold';
   --font-WorkSansSemiBold: 'WorkSansSemiBold';
