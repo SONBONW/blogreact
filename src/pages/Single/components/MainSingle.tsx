@@ -1,6 +1,6 @@
 import React from 'react';
-import InforHighLightSingle from '../../../components/Main/InforHighLightSingle';
-import Advertisement from '../../../components/Main/Advertisement';
+import InforHighLightSingle from '../../../components/Feature/InforHighLightSingle';
+import Advertisement from '../../../components/Feature/Advertisement';
 import user1 from '../../../asset/img/img1.png';
 import user2 from '../../../asset/img/img2.png';
 

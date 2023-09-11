@@ -1,5 +1,5 @@
 import React from 'react';
-import InforAuthor from '../../../components/Main/InforAuthor';
+import InforAuthor from '../../../components/Feature/InforAuthor';
 import RenderPost from '../../../components/Function/RenderPost';
 
 function MainAuthor() {

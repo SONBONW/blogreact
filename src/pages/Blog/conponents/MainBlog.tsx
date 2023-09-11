@@ -1,6 +1,6 @@
 import React from 'react';
-import Advertisement from '../../../components/Main/Advertisement';
-import InforHighLightBlog from '../../../components/Main/InforHighLightBlog';
+import Advertisement from '../../../components/Feature/Advertisement';
+import InforHighLightBlog from '../../../components/Feature/InforHighLightBlog';
 import RenderPost from '../../../components/Function/RenderPost';
 import { Link } from 'react-router-dom';
 

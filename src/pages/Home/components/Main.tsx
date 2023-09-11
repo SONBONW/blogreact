@@ -1,6 +1,6 @@
 import React from 'react';
-import InforHighLightHome from '../../../components/Main/InforHighLightHome';
-import Advertisement from '../../../components/Main/Advertisement';
+import InforHighLightHome from '../../../components/Feature/InforHighLightHome';
+import Advertisement from '../../../components/Feature/Advertisement';
 import RenderPost from '../../../components/Function/RenderPost';
 
 function Main() {
