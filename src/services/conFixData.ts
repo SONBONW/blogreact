@@ -13,13 +13,17 @@ interface Post {
 }
 
 interface updatePost {
-
+  title: string;
+  img: string;
+  time: string;
+  content: string;
 }
+const url = 'http://localhost:3000/';
 
 const conFigData = {
   getPost: async () => {
     try {
-      const response = await axios.get('http://localhost:3000/posts');
+      const response = await axios.get(`${url}posts`);
       return response.data;
     } catch (error) {
       throw new Error('Unable to fetch data');
@@ -27,7 +31,7 @@ const conFigData = {
   },
   getPostId: async (id: string) => {
      try {
-      const response = await axios.get(`http://localhost:3000/posts/${id}`);
+      const response = await axios.get(`${url}posts/${id}`);
       return response.data;
     } catch (error) {
       throw new Error('Unable to fetch data');
@@ -35,7 +39,7 @@ const conFigData = {
   },
   addPost: async (newPost: Post) => {
     try {
-      const response = await axios.post('http://localhost:3000/posts', newPost);
+      const response = await axios.post(`${url}posts`, newPost);
       return response.data;
     } catch {
       throw new Error('Unable to add post');
@@ -43,7 +47,7 @@ const conFigData = {
   },
   deletePost: async (id: string) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/posts/${id}`);
+      const response = await axios.delete(`${url}posts/${id}`);
       return response.data;
     } catch (error) {
       throw new Error('Unable to delete post');
@@ -52,7 +56,7 @@ const conFigData = {
   updatePost: async (id: string, updatePost: updatePost) => {
     try {
       const responsive = await axios.patch(
-        `http://localhost:3000/posts/${id}`,
+        `${url}posts/${id}`,
         updatePost,
       );
       return responsive.data;
@@ -62,7 +66,7 @@ const conFigData = {
   },
   getCount: async () => {
     try {
-      const response = await axios.get('http://localhost:3000/total');
+      const response = await axios.get(`${url}total`);
       const totalCount = response.data.count;
       return totalCount;
     } catch {
@@ -71,7 +75,7 @@ const conFigData = {
   },
   updateCount: async (newCount: number) => {
     try {
-      const response = await axios.patch('http://localhost:3000/total', {
+      const response = await axios.patch(`${url}total`, {
         count: newCount,
       });
       return response.data;
