@@ -5,7 +5,7 @@ import Blog from '../../pages/Blog';
 import Single from '../../pages/Single';
 import Author from '../../pages/Author';
 import Create from '../../pages/Create';
-import Fix from '../../pages/Fix';
+import Fix from '../../pages/Update';
 
 const DefautRouter = () => {
   return <Navigate to="/home" />;

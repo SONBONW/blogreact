@@ -12,10 +12,22 @@ interface Post {
   content: string;
 }
 
+interface updatePost {
+
+}
+
 const conFigData = {
   getPost: async () => {
     try {
       const response = await axios.get('http://localhost:3000/posts');
+      return response.data;
+    } catch (error) {
+      throw new Error('Unable to fetch data');
+    }
+  },
+  getPostId: async (id: string) => {
+     try {
+      const response = await axios.get(`http://localhost:3000/posts/${id}`);
       return response.data;
     } catch (error) {
       throw new Error('Unable to fetch data');
@@ -37,7 +49,7 @@ const conFigData = {
       throw new Error('Unable to delete post');
     }
   },
-  updatePost: async (id: string, updatePost: Post) => {
+  updatePost: async (id: string, updatePost: updatePost) => {
     try {
       const responsive = await axios.patch(
         `http://localhost:3000/posts/${id}`,

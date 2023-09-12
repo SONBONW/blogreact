@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { DateTimeFormatOptions } from 'intl';
+import conFigData from '../../../services/conFixData';
+import Update from '../index';
 
 const getFileNameFromPath = (filePath: string) => {
   // Tách đường dẫn thành mảng các phần tử
@@ -35,7 +37,7 @@ interface Post {
   content: string;
 }
 
-function MainFix() {
+function MainUpdate() {
   let url = new URL(window.location.href);
   let id = url.searchParams.get('id');
   const [error, setError] = useState(null);
@@ -45,49 +47,46 @@ function MainFix() {
   const [contents, setContent] = useState('');
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/${id}`)
-      .then((res) => res.json())
-      .then((posts) => {
-        setPosts(posts);
-        setContent(posts.content);
-        setFile(posts.img);
-        setTitle(posts.title);
+    conFigData
+      .getPostId(id!.toString())
+      .then(post => {
+        setPosts(post);
+        setTitle(post.title);
+        setContent(post.content);
+        setFile(post.img);
       })
       .catch((error) => {
-        setError(error);
-      });
+        console.log('Can not get posts in data!');
+    })
   }, [id]);
 
   const handleFileImg = () => {
     if (files) {
-      console.log(files);
       return require(`../../../asset/img/${getFileNameFromPath(files)}`);
     }
   };
 
   const handlerFix = (event: React.FormEvent) => {
     event.preventDefault();
-    const data = {
+    const updatePost = {
       title: titles,
       img: files,
       time: formatDate(new Date().toString()),
       content: contents,
     };
 
-    fetch(`http://localhost:3000/posts/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((fixPost) => {
-        setPosts(fixPost);
+    conFigData
+      .updatePost(id!.toString(), updatePost)
+      .then(post => {
+        setPosts(post);
+        setContent('');
+        setFile('');
+        setTitle('');
+        alert('Update Correct!');
       })
-      .catch((error) => {
-        console.error('Error adding post:', error);
-      });
+      .catch(error => {
+        console.log('Can not update post in data!');
+    })
   };
 
   return (
@@ -158,4 +157,4 @@ function MainFix() {
   );
 }
 
-export default MainFix;
+export default MainUpdate;

@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeletePost from '../ButtonDelete';
-import conFigDataPost from '../../services/conFixData';
+import conFigData from '../../services/conFixData';
 
 interface GetDataProps {
   postQuantity: number; // Xác định kiểu dữ liệu của postQuantity là number
@@ -28,8 +28,8 @@ function InforPost({ postQuantity }: GetDataProps) {
   const [posts, setPosts] = useState<Post[] | undefined>();
 
   useEffect(() => {
-    // Sử dụng conFigDataPost để lấy danh sách bài viết
-    conFigDataPost
+    // Sử dụng conFigData để lấy danh sách bài viết
+    conFigData
       .getPost()
       .then((posts) => {
         setPosts(posts);
@@ -46,7 +46,7 @@ function InforPost({ postQuantity }: GetDataProps) {
       // Cập nhật danh sách bài viết sau khi xóa
       setPosts(posts!.filter((post: any) => post.id !== postId));
     } catch {
-      throw new Error('Can not delete post');
+      console.log('Can not delete post');
     }
   };
 
