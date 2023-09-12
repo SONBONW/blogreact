@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeletePost from '../ButtonDelete';
-import conFigDataPost from '../../services/post';
+import conFigDataPost from '../../services/conFixData';
 
 interface GetDataProps {
   postQuantity: number; // Xác định kiểu dữ liệu của postQuantity là number

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import conFigDataPost from '../../services/post';
-import conFigDataTotal from '../../services/total';
+import conFigData from '../../services/conFixData';
 
 interface DeleteProps {
   onDeleteSuccess: () => void;
@@ -13,13 +12,13 @@ const DeletePost: React.FC<DeleteProps> = (props) => {
 
   const handlerDeletePost = async (postId: number) => {
     try {
-      await conFigDataPost.deletePost(postId.toString());
+      await conFigData.deletePost(postId.toString());
 
       // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
       if (total !== undefined) {
-        const total = await conFigDataTotal.getCount();
+        const total = await conFigData.getCount();
         const newCount = total - 1;
-        await conFigDataTotal.updateCount(newCount);
+        await conFigData.updateCount(newCount);
         setTotal(newCount);
       }
       onDeleteSuccess();

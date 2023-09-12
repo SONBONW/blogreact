@@ -2,8 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { DateTimeFormatOptions } from 'intl';
-import conFigDataPost from '../../services/post';
-import conFigDataTotal from '../../services/total';
+import conFigData from '../../services/conFixData';
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -80,18 +79,18 @@ function AddPost() {
 
     try {
       // Gọi hàm addPost từ conFigDataPost để thêm bài viết
-      const addedPost = await conFigDataPost.addPost(newPost);
+      const addedPost = await conFigData.addPost(newPost);
       // Cập nhật danh sách bài viết sau khi thêm
       setPosts([...posts, addedPost]);
 
       // Gọi hàm getCount từ conFigDataTotal để lấy giá trị total hiện tại
-      const currentTotal = await conFigDataTotal.getCount();
+      const currentTotal = await conFigData.getCount();
 
       // Cập nhật count bằng cách tăng thêm 1
       const newTotal = currentTotal + 1;
 
       // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
-      await conFigDataTotal.updateCount(newTotal);
+      await conFigData.updateCount(newTotal);
       setTotal(newTotal);
 
       // Đặt lại trạng thái của biểu mẫu để chuẩn bị thêm bài viết khác
