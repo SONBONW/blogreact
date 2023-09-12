@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../../services/conFixData';
-import Update from '../index';
 
 const getFileNameFromPath = (filePath: string) => {
   // Tách đường dẫn thành mảng các phần tử
@@ -47,6 +46,7 @@ function MainUpdate() {
   const [contents, setContent] = useState('');
 
   useEffect(() => {
+    
     conFigData
       .getPostId(id!.toString())
       .then(post => {
