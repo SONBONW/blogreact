@@ -46,7 +46,6 @@ function MainUpdate() {
   const [contents, setContent] = useState('');
 
   useEffect(() => {
-    
     conFigData
       .getPostId(id!.toString())
       .then(post => {
