@@ -98,6 +98,7 @@ function AddPost() {
       setTitle('');
       let src = document.getElementById('show-img') as HTMLInputElement;
       src.src = '';
+      alert('Add Post Correct');
     } catch (error) {
       console.error('Lỗi khi thêm bài viết:', error);
     }
