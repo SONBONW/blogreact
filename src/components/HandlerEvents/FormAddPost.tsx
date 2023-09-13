@@ -166,6 +166,7 @@ function AddPost() {
           onChange={handleFileChange}
           multiple
         />
+        <br />
         <img src="" alt="" id="show-img" />
         <span id="errorimg">{fileError}</span>
       </div>

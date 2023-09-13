@@ -10,11 +10,12 @@ interface getTitle {
   title: string;
 }
 
+
 function RenderPost({ title }: getTitle) {
   const [postStart, setPostStart] = useState(0);
   const [postEnd, setPostEnd] = useState(3);
   const [total, setTotal] = useState(0);
-
+  
   useEffect(()=>{
     conFigData
     .getCount()
@@ -36,12 +37,18 @@ function RenderPost({ title }: getTitle) {
     // }
      if (postEnd + 3 <= total) {
       // Kiểm tra xem có thể hiển thị thêm 3 bài viết không
-      setPostStart(postStart + 3);
-      setPostEnd(postEnd + 3);
+      setPostStart(postStart => postStart + 3);
+      setPostEnd( postEnd => postEnd + 3);
     } else {
       // Nếu không thể hiển thị thêm 3 bài viết, ẩn nút "Xem thêm"
-      setPostStart(0);
-      setPostEnd(total); // Hiển thị tất cả các bài viết còn lại
+      if (total - postEnd > 0){
+        setPostStart(postStart => postEnd);
+        setPostEnd(postEnd => total);
+      }else {
+        setPostStart(0);
+        setPostEnd(3); // Hiển thị tất cả các bài viết còn lại
+      }
+      
     }
    
   };
