@@ -23,7 +23,7 @@ const DeletePost: React.FC<DeleteProps> = (props) => {
       }
       onDeleteSuccess();
     } catch {
-      throw new Error('Can not delete post');
+      console.log('Can not delete post');
     }
   };
 

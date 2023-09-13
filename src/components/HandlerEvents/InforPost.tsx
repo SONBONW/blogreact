@@ -53,7 +53,6 @@ function InforPost({ postQuantity }: GetDataProps) {
   const listPost = posts ? posts.slice(0, postQuantity).map((post: any) => {
     const imgSrc = require(`../../asset/img/${post.img}`);
     const avatarSrc = require(`../../asset/img/${post.user.avatar}`);
-    const id = post.id;
 
     return (
       <div className="col-lg-4 col-md-6 col-sm-8 col-12" key={post.id}>
@@ -65,7 +64,7 @@ function InforPost({ postQuantity }: GetDataProps) {
           <img className="img-fluid" src={imgSrc} alt="" />
           <span className="tag rounded">{post.tag}</span>
           <button className="edit rounded">
-            <Link to={`/fix?id=${id}`} className="nav-link">
+            <Link to={`/fix?id=${post.id}`} className="nav-link">
               Edit
             </Link>
           </button>
