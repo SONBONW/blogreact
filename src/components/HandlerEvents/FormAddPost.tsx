@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../services/conFixData';
 import { useNavigate } from 'react-router-dom';
@@ -37,9 +37,12 @@ interface Post {
 }
 
 function AddPost() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const titleRef = useRef<HTMLInputElement | null>(null);
+  // const [title, setTitle] = useState('');
+  // const [content, setContent] = useState('');
+  // const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const contentRef = useRef<HTMLTextAreaElement | null>(null);
   const [titleError, setTitleError] = useState('');
   const [fileError, setFileError] = useState('');
   const [contentError, setContentError] = useState('');
@@ -50,7 +53,11 @@ function AddPost() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!title) {
+    const titleValue = titleRef.current?.value || '';
+    const contentValue = contentRef.current?.value || '';
+    const selectedFile = fileInputRef.current?.files?.[0];
+
+    if (!titleValue) {
       setTitleError('Title is required');
       return;
     }
@@ -60,15 +67,16 @@ function AddPost() {
       return;
     }
 
-    if (!content) {
+    if (!contentValue) {
       setContentError('Content is required');
       return;
     }
+
     const link = document.getElementById('post-img') as HTMLInputElement;
     const replaceLink = getFileNameFromPath(link.value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const newPost = {
-      title: title,
+      title: titleValue,
       img: replaceLink,
       tag: 'Technology',
       time: formatDate(new Date().toString()),
@@ -76,7 +84,7 @@ function AddPost() {
         username: 'Name',
         avatar: 'img-user3.png',
       },
-      content: content,
+      content: contentValue,
     };
 
     try {
@@ -94,12 +102,6 @@ function AddPost() {
       // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
       await conFigData.updateCount(newTotal);
       setTotal(newTotal);
-
-      // Đặt lại trạng thái của biểu mẫu để chuẩn bị thêm bài viết khác
-      setContent('');
-      setTitle('');
-      let src = document.getElementById('show-img') as HTMLInputElement;
-      src.src = '';
       alert('Add Post Correct');
       navigator('/author');
     } catch (error) {
@@ -107,21 +109,8 @@ function AddPost() {
     }
   };
 
-  const handleTitleChange = (event: { target: { value: any } }) => {
-    const value = event.target.value;
-    setTitle(value);
-    setTitleError(value ? '' : 'Title is required');
-  };
-
-  const handleContentChange = (event: { target: { value: any } }) => {
-    const value = event.target.value;
-    setContent(value);
-    setContentError(value ? '' : 'Content is required');
-  };
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    setSelectedFile(file || null);
 
     if (file) {
       const fileUrl = URL.createObjectURL(file);
@@ -148,8 +137,7 @@ function AddPost() {
             placeholder="Enter Title Post"
             aria-label="Title"
             aria-describedby="basic-addon1"
-            value={title}
-            onChange={handleTitleChange}
+            ref={titleRef}
           />
         </label>
         <span id="errortitle">{titleError}</span>
@@ -164,10 +152,11 @@ function AddPost() {
           type="file"
           id="post-img"
           onChange={handleFileChange}
+          ref={fileInputRef}
           multiple
         />
         <br />
-        <img src="" alt="" id="show-img" />
+        <img src={`${fileInputRef}`} alt="" id="show-img" />
         <span id="errorimg">{fileError}</span>
       </div>
       <div className="form-floating">
@@ -176,8 +165,7 @@ function AddPost() {
           placeholder="Enter Content"
           id="content"
           style={{ height: '350px' }}
-          value={content}
-          onChange={handleContentChange}
+          ref={contentRef}
         ></textarea>
         <label htmlFor="content">
           <h6>Enter Content</h6>
