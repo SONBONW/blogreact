@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../../services/conFixData';
-
+import { useNavigate } from "react-router-dom";
 const getFileNameFromPath = (filePath: string) => {
   // Tách đường dẫn thành mảng các phần tử
   const pathArray = filePath.split('\\');
@@ -37,6 +38,7 @@ interface Post {
 }
 
 function MainUpdate() {
+  const navigate = useNavigate();
   let url = new URL(window.location.href);
   let id = url.searchParams.get('id');
   const [error, setError] = useState(null);
@@ -53,6 +55,7 @@ function MainUpdate() {
         setTitle(post.title);
         setContent(post.content);
         setFile(post.img);
+
       })
       .catch((error) => {
         console.log('Can not get posts in data!');
@@ -65,7 +68,7 @@ function MainUpdate() {
     }
   };
 
-  const handlerFix = (event: React.FormEvent) => {
+  const handlerUpdate = (event: React.FormEvent) => {
     event.preventDefault();
     const updatePost = {
       title: titles,
@@ -82,6 +85,7 @@ function MainUpdate() {
         setFile('');
         setTitle('');
         alert('Update Correct!');
+        navigate('/author');
       })
       .catch(error => {
         console.log('Can not update post in data!');
@@ -92,9 +96,9 @@ function MainUpdate() {
     <main className="container custorm-container px-0 create-post">
       <div className="form-create">
         <form action="#" className="d-flex flex-column">
-          <h3>Form Fix Post</h3>
+          <h3>Form Update Post</h3>
           <div>
-            <h5>Fix Title</h5>
+            <h5>Update Title</h5>
             <label className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">
                 Title
@@ -113,10 +117,11 @@ function MainUpdate() {
             <span id="errortitle"></span>
           </div>
           <div className="mb-3">
-            <h5>Post Image</h5>
+            <h5>Update Image</h5>
             <label htmlFor="post-img" className="form-label form-chosen-file">
               Update File
             </label>
+            <br />
             <input
               className="form-control"
               type="file"
@@ -125,7 +130,7 @@ function MainUpdate() {
               defaultValue={files}
               onChange={(e) => setFile(e.target.value)}
             />
-            <img src={handleFileImg()} alt="" id="show-img" />
+            <img src={handleFileImg()} alt="" id="show-img"/>
             <span id="errorimg"></span>
           </div>
           <div className="form-floating">
@@ -146,9 +151,9 @@ function MainUpdate() {
           <button
             id="submit"
             className="btn btn-primary text-center border-0"
-            onClick={handlerFix}
+            onClick={handlerUpdate}
           >
-            Add Fix Post
+            Update Post
           </button>
         </form>
       </div>

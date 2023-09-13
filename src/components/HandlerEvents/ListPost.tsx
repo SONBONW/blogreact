@@ -1,31 +1,71 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeletePost from '../ButtonDelete';
 import GetPost from './InforPost';
+import conFigData from '../../services/conFixData';
 
 interface getTitle {
   title: string;
 }
 
 function RenderPost({ title }: getTitle) {
-  const [postShow, setPostShow] = useState(9);
+  const [postStart, setPostStart] = useState(0);
+  const [postEnd, setPostEnd] = useState(3);
+  const [total, setTotal] = useState(0);
+
+  useEffect(()=>{
+    conFigData
+    .getCount()
+    .then(total=> {
+      setTotal(total);
+    })
+    .catch(error => {
+      console.log('Can not get count in total from data');
+    })
+  })
+
   const handlerClickViewPost = () => {
-    setPostShow(postShow + 9);
+    // if (postEnd === total){
+    //   setPostStart(0);
+    //   setPostEnd(3);
+    // }else {
+    //    setPostStart(postStart + 3);
+    //     setPostEnd(postEnd + 3);
+    // }
+     if (postEnd + 3 <= total) {
+      // Kiểm tra xem có thể hiển thị thêm 3 bài viết không
+      setPostStart(postStart + 3);
+      setPostEnd(postEnd + 3);
+    } else {
+      // Nếu không thể hiển thị thêm 3 bài viết, ẩn nút "Xem thêm"
+      setPostStart(0);
+      setPostEnd(total); // Hiển thị tất cả các bài viết còn lại
+    }
+   
   };
+  
 
   return (
     <>
       <div className="posts row gx-md-4">
-        <GetPost postQuantity={postShow} />
+        <GetPost postStart={postStart} postEnd={postEnd} />
       </div>
-      <button
+      {/* <button
         className="view rounded d-flex justify-content-center align-items-center"
         onClick={handlerClickViewPost}
       >
         {title}
-      </button>
+      </button> */}
+      {postEnd < total ? ( // Kiểm tra xem có hiển thị nút "Xem thêm" hay không
+        <button
+          className="view rounded d-flex justify-content-center align-items-center"
+          onClick={handlerClickViewPost}
+        >
+          {title}
+        </button>
+      ) : null}
     </>
   );
 }

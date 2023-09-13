@@ -380,12 +380,33 @@ article h4 {
   font-size: 14px;
 }
 
+.edit ul {
+  transform: translate3d(-14px, 24px, 0px) !important;
+}
+
+.dropdown-menu{
+  --bs-dropdown-min-width: 0;
+}
+
+.dropdown-menu.show,
+.dropdown-menu.show li{
+ display:  inline-block;
+}
+
+
 /*Button delete post*/
 .post {
   position: relative;
 }
 
 .btn-delete {
+  border: none;
+  color: red;
+  background-color: transparent;
+  margin-bottom: 5px;
+}
+
+/* .btn-delete {
   top: -5px;
   right: 5px;
   display: none;
@@ -396,7 +417,7 @@ article h4 {
 
 .post:hover .btn-delete {
   display: block;
-}
+} */
 
 /*View Post*/
 

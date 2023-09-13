@@ -7,7 +7,8 @@ import DeletePost from '../ButtonDelete';
 import conFigData from '../../services/conFixData';
 
 interface GetDataProps {
-  postQuantity: number; // Xác định kiểu dữ liệu của postQuantity là number
+  postEnd: number;
+  postStart: number; // Xác định kiểu dữ liệu của postQuantity là number
 }
 
 interface Post {
@@ -23,7 +24,7 @@ interface Post {
   content: string;
 }
 
-function InforPost({ postQuantity }: GetDataProps) {
+function InforPost({ postStart, postEnd }: GetDataProps) {
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState<Post[] | undefined>();
 
@@ -50,23 +51,36 @@ function InforPost({ postQuantity }: GetDataProps) {
     }
   };
 
-  const listPost = posts ? posts.slice(0, postQuantity).map((post: any) => {
+  const listPost = posts ? posts.slice(postStart, postEnd).map((post: any) => {
     const imgSrc = require(`../../asset/img/${post.img}`);
     const avatarSrc = require(`../../asset/img/${post.user.avatar}`);
 
     return (
       <div className="col-lg-4 col-md-6 col-sm-8 col-12" key={post.id}>
         <article className="post">
-          <DeletePost
+          {/* <DeletePost
             onDeleteSuccess={() => handleDeletePost(post.id)}
             postId={post.id}
-          />
+          /> */}
           <img className="img-fluid" src={imgSrc} alt="" />
           <span className="tag rounded">{post.tag}</span>
-          <button className="edit rounded">
-            <Link to={`/fix?id=${post.id}`} className="nav-link">
-              Edit
-            </Link>
+          <button className="edit rounded dropdown">
+          <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+            Action
+          </Link>
+          <ul className="dropdown-menu">
+            <li >
+              <DeletePost
+              onDeleteSuccess={() => handleDeletePost(post.id)}
+              postId={post.id}
+              />
+            </li>
+            <li>
+              <Link  to={`/fix?id=${post.id}`}  className='dropdown-item' >
+                Edit
+              </Link>
+            </li>
+          </ul>
           </button>
           <h4>{post.title}</h4>
           <div className="infor-user">
