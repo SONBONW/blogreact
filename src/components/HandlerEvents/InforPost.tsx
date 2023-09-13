@@ -64,7 +64,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
           /> */}
           <img className="img-fluid" src={imgSrc} alt="" />
           <span className="tag rounded">{post.tag}</span>
-          <button className="edit rounded dropdown">
+          <div className="edit rounded dropdown">
           <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
             Action
           </Link>
@@ -81,7 +81,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
               </Link>
             </li>
           </ul>
-          </button>
+          </div>
           <h4>{post.title}</h4>
           <div className="infor-user">
             <div className="user">

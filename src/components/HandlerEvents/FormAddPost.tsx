@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../services/conFixData';
+import { useNavigate } from "react-router-dom";
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -44,6 +45,7 @@ function AddPost() {
   const [contentError, setContentError] = useState('');
   const [posts, setPosts] = useState<Post[]>([]);
   const [total, setTotal] = useState();
+  const navigator = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -99,6 +101,7 @@ function AddPost() {
       let src = document.getElementById('show-img') as HTMLInputElement;
       src.src = '';
       alert('Add Post Correct');
+      navigator('/author');
     } catch (error) {
       console.error('Lỗi khi thêm bài viết:', error);
     }
