@@ -40,16 +40,27 @@
   /*Posts*/
   article h4 {
     font-size: 20px !important;
+    margin: 16px 0 12px 0;
   }
 
   article .user span {
     font-size: 14px !important;
-    padding-left: 2px !important;
+    padding-left: 10px !important;
   }
 
   article .infor-user .time {
     font-size: 14px !important;
-    margin-left: 7px !important;
+    margin-left: 45px !important;
+    margin-top: -10px;
+  }
+
+  .infor-user {
+    flex-wrap: wrap;
+  }
+
+  .infor-list .user img {
+    position: relative;
+    top: 10px;
   }
 
   /*Main Single Post*/
@@ -87,12 +98,12 @@
 
   article .user span {
     font-size: 14px !important;
-    padding-left: 2px !important;
+    padding-left: 10px !important;
   }
 
   article .infor-user .time {
     font-size: 14px !important;
-    margin-left: 8px !important;
+    margin-left: 10px !important;
   }
 
   /*Main Create Post*/
@@ -237,7 +248,7 @@
   .form-introduce h2 {
     font-size: 18px !important;
     line-height: 20px !important;
-    margin: 6px 0 7px 0 !important;
+    margin: 10px 0 !important;
   }
 
   .form-introduce .time {
@@ -272,6 +283,10 @@
   .infor-user .time {
     font-size: 14px !important;
     margin-left: 45px !important;
+  }
+  .infor-list .user img {
+    position: relative;
+    top: 10px;
   }
 
   /*Main Blog Listing*/
@@ -470,6 +485,7 @@
 
   article .infor-user .time {
     font-size: 14px !important;
+    margin-left: 10px;
   }
 
   article h4 {

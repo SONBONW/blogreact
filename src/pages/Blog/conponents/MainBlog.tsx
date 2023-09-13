@@ -36,7 +36,7 @@ function MainBlog() {
           </div>
         </div>
       </section>
-      <section className="list-post">
+      <section className="list-post overflow-hidden">
         <RenderPost title={'Load More'} />
       </section>
       <Advertisement />

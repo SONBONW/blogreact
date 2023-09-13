@@ -96,7 +96,7 @@ function MainAuthor() {
           </article>
         </div>
       </section>
-      <section className="list-post">
+      <section className="list-post overflow-hidden">
         <h4 className="title">Latest Post</h4>
         <RenderPost title={'Load More'} />
       </section>

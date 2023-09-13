@@ -86,7 +86,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
                 </ul>
               </div>
               <h4>{post.title}</h4>
-              <div className="infor-user">
+              <div className="infor-user infor-list">
                 <div className="user">
                   <img className="img-fluid" src={avatarSrc} alt="" />
                   <span>{post.user.username}</span>
@@ -98,7 +98,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
         );
       })
     : [];
-  return <div className="posts row gx-md-4">{listPost}</div>;
+  return <>{listPost}</>;
 }
 
 export default InforPost;

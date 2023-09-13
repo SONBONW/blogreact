@@ -217,6 +217,7 @@ nav ul li a:hover {
 
 /*Creact Post Link*/
 .create-new-post {
+  z-index: 100;
   position: fixed;
   bottom: 30px;
   right: 30px;

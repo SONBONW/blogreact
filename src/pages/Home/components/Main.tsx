@@ -27,7 +27,7 @@ function Main() {
 
       <Advertisement />
 
-      <section className="list-post">
+      <section className="list-post overflow-hidden">
         <h4 className="title">Latest Post</h4>
         <RenderPost title={'View All Post'} />
       </section>
