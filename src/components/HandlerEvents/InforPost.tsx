@@ -59,10 +59,6 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
         return (
           <div className="col-lg-4 col-md-6 col-sm-8 col-12" key={post.id}>
             <article className="post">
-              {/* <DeletePost
-            onDeleteSuccess={() => handleDeletePost(post.id)}
-            postId={post.id}
-          /> */}
               <img className="img-fluid" src={imgSrc} alt="" />
               <span className="tag rounded">{post.tag}</span>
               <div className="edit rounded dropdown">
