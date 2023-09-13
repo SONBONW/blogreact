@@ -74,6 +74,7 @@ a {
 
 :root {
   --fz-24: 24px;
+  --red: red;
   --btn-primary: rgba(75, 107, 251, 1);
   --secondary-500: #696a75;
   --secondary-100: #e8e8ea;
