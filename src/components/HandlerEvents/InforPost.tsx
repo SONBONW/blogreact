@@ -51,49 +51,57 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
     }
   };
 
-  const listPost = posts ? posts.slice(postStart, postEnd).map((post: any) => {
-    const imgSrc = require(`../../asset/img/${post.img}`);
-    const avatarSrc = require(`../../asset/img/${post.user.avatar}`);
+  const listPost = posts
+    ? posts.slice(postStart, postEnd).map((post: any) => {
+        const imgSrc = require(`../../asset/img/${post.img}`);
+        const avatarSrc = require(`../../asset/img/${post.user.avatar}`);
 
-    return (
-      <div className="col-lg-4 col-md-6 col-sm-8 col-12" key={post.id}>
-        <article className="post">
-          {/* <DeletePost
+        return (
+          <div className="col-lg-4 col-md-6 col-sm-8 col-12" key={post.id}>
+            <article className="post">
+              {/* <DeletePost
             onDeleteSuccess={() => handleDeletePost(post.id)}
             postId={post.id}
           /> */}
-          <img className="img-fluid" src={imgSrc} alt="" />
-          <span className="tag rounded">{post.tag}</span>
-          <div className="edit rounded dropdown">
-          <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-            Action
-          </Link>
-          <ul className="dropdown-menu">
-            <li >
-              <DeletePost
-              onDeleteSuccess={() => handleDeletePost(post.id)}
-              postId={post.id}
-              />
-            </li>
-            <li>
-              <Link  to={`/fix?id=${post.id}`}  className='dropdown-item' >
-                Edit
-              </Link>
-            </li>
-          </ul>
+              <img className="img-fluid" src={imgSrc} alt="" />
+              <span className="tag rounded">{post.tag}</span>
+              <div className="edit rounded dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Action
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <DeletePost
+                      onDeleteSuccess={() => handleDeletePost(post.id)}
+                      postId={post.id}
+                    />
+                  </li>
+                  <li>
+                    <Link to={`/fix?id=${post.id}`} className="dropdown-item">
+                      Edit
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <h4>{post.title}</h4>
+              <div className="infor-user">
+                <div className="user">
+                  <img className="img-fluid" src={avatarSrc} alt="" />
+                  <span>{post.user.username}</span>
+                </div>
+                <span className="time">{post.time}</span>
+              </div>
+            </article>
           </div>
-          <h4>{post.title}</h4>
-          <div className="infor-user">
-            <div className="user">
-              <img className="img-fluid" src={avatarSrc} alt="" />
-              <span>{post.user.username}</span>
-            </div>
-            <span className="time">{post.time}</span>
-          </div>
-        </article>
-      </div>
-    );
-  }) : [];
+        );
+      })
+    : [];
   return <div className="posts row gx-md-4">{listPost}</div>;
 }
 

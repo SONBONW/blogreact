@@ -33,7 +33,8 @@ const DeletePost: React.FC<DeleteProps> = (props) => {
       className="btn-delete dropdown-item"
       aria-label="Close"
       onClick={() => handlerDeletePost(postId)}
-    >Delete
+    >
+      Delete
     </button>
   );
 };

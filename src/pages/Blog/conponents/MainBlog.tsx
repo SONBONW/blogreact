@@ -20,22 +20,22 @@ function MainBlog() {
         </p>
       </section>
       <section>
-      <img className="img-fluid" src={img} alt="" />
-      <div className="form-introduce blog-listing">
-        <span className="tag rounded">Technology</span>
-        <h2>
-          The Impact of Technology on the <br /> Workplace: How Technology is
-          Changing
-        </h2>
-        <div className="infor-user">
-          <div className="user">
-            <img src={user} alt="" />
-            <span>Jason Francisco</span>
+        <img className="img-fluid" src={img} alt="" />
+        <div className="form-introduce blog-listing">
+          <span className="tag rounded">Technology</span>
+          <h2>
+            The Impact of Technology on the <br /> Workplace: How Technology is
+            Changing
+          </h2>
+          <div className="infor-user">
+            <div className="user">
+              <img src={user} alt="" />
+              <span>Jason Francisco</span>
+            </div>
+            <time>August 20, 2022</time>
           </div>
-          <time>August 20, 2022</time>
         </div>
-      </div>
-    </section>
+      </section>
       <section className="list-post">
         <RenderPost title={'Load More'} />
       </section>

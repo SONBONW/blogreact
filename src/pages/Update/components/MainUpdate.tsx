@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../../services/conFixData';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 const getFileNameFromPath = (filePath: string) => {
   // Tách đường dẫn thành mảng các phần tử
   const pathArray = filePath.split('\\');
@@ -50,16 +50,15 @@ function MainUpdate() {
   useEffect(() => {
     conFigData
       .getPostId(id!.toString())
-      .then(post => {
+      .then((post) => {
         setPosts(post);
         setTitle(post.title);
         setContent(post.content);
         setFile(post.img);
-
       })
       .catch((error) => {
         console.log('Can not get posts in data!');
-    })
+      });
   }, [id]);
 
   const handleFileImg = () => {
@@ -79,7 +78,7 @@ function MainUpdate() {
 
     conFigData
       .updatePost(id!.toString(), updatePost)
-      .then(post => {
+      .then((post) => {
         setPosts(post);
         setContent('');
         setFile('');
@@ -87,9 +86,9 @@ function MainUpdate() {
         alert('Update Correct!');
         navigate('/author');
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('Can not update post in data!');
-    })
+      });
   };
 
   return (
@@ -130,7 +129,7 @@ function MainUpdate() {
               defaultValue={files}
               onChange={(e) => setFile(e.target.value)}
             />
-            <img src={handleFileImg()} alt="" id="show-img"/>
+            <img src={handleFileImg()} alt="" id="show-img" />
             <span id="errorimg"></span>
           </div>
           <div className="form-floating">

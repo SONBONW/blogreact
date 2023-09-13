@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../services/conFixData';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);

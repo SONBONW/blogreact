@@ -10,22 +10,21 @@ interface getTitle {
   title: string;
 }
 
-
 function RenderPost({ title }: getTitle) {
   const [postStart, setPostStart] = useState(0);
   const [postEnd, setPostEnd] = useState(3);
   const [total, setTotal] = useState(0);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     conFigData
-    .getCount()
-    .then(total=> {
-      setTotal(total);
-    })
-    .catch(error => {
-      console.log('Can not get count in total from data');
-    })
-  })
+      .getCount()
+      .then((total) => {
+        setTotal(total);
+      })
+      .catch((error) => {
+        console.log('Can not get count in total from data');
+      });
+  });
 
   const handlerClickViewPost = () => {
     // if (postEnd === total){
@@ -35,24 +34,21 @@ function RenderPost({ title }: getTitle) {
     //    setPostStart(postStart + 3);
     //     setPostEnd(postEnd + 3);
     // }
-     if (postEnd + 3 <= total) {
+    if (postEnd + 3 <= total) {
       // Kiểm tra xem có thể hiển thị thêm 3 bài viết không
-      setPostStart(postStart => postStart + 3);
-      setPostEnd( postEnd => postEnd + 3);
+      setPostStart((postStart) => postStart + 3);
+      setPostEnd((postEnd) => postEnd + 3);
     } else {
       // Nếu không thể hiển thị thêm 3 bài viết, ẩn nút "Xem thêm"
-      if (total - postEnd > 0){
-        setPostStart(postStart => postEnd);
-        setPostEnd(postEnd => total);
-      }else {
+      if (total - postEnd > 0) {
+        setPostStart((postStart) => postEnd);
+        setPostEnd((postEnd) => total);
+      } else {
         setPostStart(0);
         setPostEnd(3); // Hiển thị tất cả các bài viết còn lại
       }
-      
     }
-   
   };
-  
 
   return (
     <>
