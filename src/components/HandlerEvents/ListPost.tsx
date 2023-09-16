@@ -1,59 +1,98 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import DeletePost from '../ButtonDelete';
 import GetPost from './InforPost';
 import conFigData from '../../services/conFixData';
+import React from 'react';
 
 interface getTitle {
   title: string;
 }
 
+interface PostState {
+  postStart: number;
+  postEnd: number;
+  total: number;
+}
+
+// Định nghĩa action types
+enum ActionTypes {
+  SetPostStart = 'SET_POST_START',
+  SetPostEnd = 'SET_POST_END',
+  SetTotal = 'SET_TOTAL',
+}
+
+// Định nghĩa reducer function
+const postReducer = (
+  state: PostState,
+  action: { type: ActionTypes; payload?: any },
+) => {
+  switch (action.type) {
+    case ActionTypes.SetPostStart:
+      return { ...state, postStart: action.payload };
+    case ActionTypes.SetPostEnd:
+      return { ...state, postEnd: action.payload };
+    case ActionTypes.SetTotal:
+      return { ...state, total: action.payload };
+    default:
+      return state;
+  }
+};
+
 function RenderPost({ title }: getTitle) {
-  const [postStart, setPostStart] = useState(0);
-  const [postEnd, setPostEnd] = useState(3);
-  const [total, setTotal] = useState(0);
+  const initialState: PostState = {
+    postStart: 0,
+    postEnd: 3,
+    total: 0,
+  };
+
+  const [state, dispatch] = useReducer(postReducer, initialState);
 
   useEffect(() => {
     conFigData
       .getCount()
       .then((total) => {
-        setTotal(total);
+        dispatch({ type: ActionTypes.SetTotal, payload: total });
       })
       .catch((error) => {
         console.log('Can not get count in total from data');
       });
-  });
+  }, [state.total]);
 
-  const handlerClickViewPost = () => {
+  const handlerClickViewPost = useCallback(() => {
+    const { postEnd, total } = state;
+
     // if (postEnd === total){
-    //   setPostStart(0);
-    //   setPostEnd(3);
+    // dispatch({type: ActionTypes.SetPostStart, payload: 0});
+    // dispatch({type: ActionTypes.SetPostEnd, payload: 3});
     // }else {
-    //    setPostStart(postStart + 3);
-    //     setPostEnd(postEnd + 3);
+    // dispatch({type: ActionTypes.SetPostStart, payload: state.postStart + 3});
+    // dispatch({type: ActionTypes.SetPostEnd, payload: state.postEnd + 3 });
     // }
-    if (postEnd + 3 <= total) {
-      // Kiểm tra xem có thể hiển thị thêm 3 bài viết không
-      setPostStart((postStart) => postStart + 3);
-      setPostEnd((postEnd) => postEnd + 3);
+
+    if (state.postEnd + 3 <= state.total) {
+      dispatch({
+        type: ActionTypes.SetPostStart,
+        payload: state.postStart + 3,
+      });
+      dispatch({ type: ActionTypes.SetPostEnd, payload: state.postEnd + 3 });
     } else {
-      // Nếu không thể hiển thị thêm 3 bài viết, ẩn nút "Xem thêm"
-      if (total - postEnd > 0) {
-        setPostStart((postStart) => postEnd);
-        setPostEnd((postEnd) => total);
+      if (state.total - state.postEnd > 0) {
+        dispatch({ type: ActionTypes.SetPostStart, payload: state.postEnd });
+        dispatch({ type: ActionTypes.SetPostEnd, payload: state.total });
       } else {
-        setPostStart(0);
-        setPostEnd(3); // Hiển thị tất cả các bài viết còn lại
+        dispatch({ type: ActionTypes.SetPostStart, payload: 0 });
+        dispatch({ type: ActionTypes.SetPostEnd, payload: 3 });
       }
     }
-  };
+  }, [state]);
 
   return (
     <>
       <div className="posts row gx-md-4">
-        <GetPost postStart={postStart} postEnd={postEnd} />
+        <GetPost postStart={state.postStart} postEnd={state.postEnd} />
       </div>
       {/* <button
         className="view rounded d-flex justify-content-center align-items-center"
@@ -61,7 +100,7 @@ function RenderPost({ title }: getTitle) {
       >
         {title}
       </button> */}
-      {postEnd < total ? ( // Kiểm tra xem có hiển thị nút "Xem thêm" hay không
+      {state.postEnd < state.total ? ( // Kiểm tra xem có hiển thị nút "Xem thêm" hay không
         <button
           className="view rounded d-flex justify-content-center align-items-center"
           onClick={handlerClickViewPost}
@@ -73,4 +112,4 @@ function RenderPost({ title }: getTitle) {
   );
 }
 
-export default RenderPost;
+export default React.memo(RenderPost);

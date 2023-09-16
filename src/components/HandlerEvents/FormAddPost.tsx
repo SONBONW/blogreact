@@ -1,6 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState, useRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useReducer,
+  useCallback,
+} from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../services/conFixData';
 import { useNavigate } from 'react-router-dom';
@@ -36,90 +42,133 @@ interface Post {
   content: string;
 }
 
+interface InputError {
+  titleError: string;
+  fileError: string;
+  contentError: string;
+}
+
+enum ActionTypes {
+  SetTitleError = 'SET_TITLE_ERROR',
+  SetFileError = 'SET_FILE_ERROR',
+  SetContentError = 'SET_CONTENT_ERROR',
+}
+
+const errorReducer = (
+  state: InputError,
+  action: { type: ActionTypes; payload?: any },
+) => {
+  switch (action.type) {
+    case ActionTypes.SetTitleError:
+      return { ...state, titleError: action.payload };
+    case ActionTypes.SetFileError:
+      return { ...state, fileError: action.payload };
+    case ActionTypes.SetContentError:
+      return { ...state, contentError: action.payload };
+    default:
+      return state;
+  }
+};
+
 function AddPost() {
   const titleRef = useRef<HTMLInputElement | null>(null);
-  // const [title, setTitle] = useState('');
-  // const [content, setContent] = useState('');
-  // const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const contentRef = useRef<HTMLTextAreaElement | null>(null);
-  const [titleError, setTitleError] = useState('');
-  const [fileError, setFileError] = useState('');
-  const [contentError, setContentError] = useState('');
+  const initialState: InputError = {
+    titleError: '',
+    contentError: '',
+    fileError: '',
+  };
+  const [state, dispatch] = useReducer(errorReducer, initialState);
   const [posts, setPosts] = useState<Post[]>([]);
   const [total, setTotal] = useState();
   const navigator = useNavigate();
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    async (event: React.FormEvent) => {
+      event.preventDefault();
 
-    const titleValue = titleRef.current?.value || '';
-    const contentValue = contentRef.current?.value || '';
-    const selectedFile = fileInputRef.current?.files?.[0];
+      const titleValue = titleRef.current?.value || '';
+      const contentValue = contentRef.current?.value || '';
+      const selectedFile = fileInputRef.current?.files?.[0];
 
-    if (!titleValue) {
-      setTitleError('Title is required');
-      return;
-    }
+      if (!titleValue) {
+        dispatch({
+          type: ActionTypes.SetTitleError,
+          payload: 'Title is required',
+        });
+        return;
+      }
 
-    if (!selectedFile) {
-      setFileError('File is required');
-      return;
-    }
+      if (!selectedFile) {
+        dispatch({
+          type: ActionTypes.SetFileError,
+          payload: 'File is required',
+        });
+        return;
+      }
 
-    if (!contentValue) {
-      setContentError('Content is required');
-      return;
-    }
+      if (!contentValue) {
+        dispatch({
+          type: ActionTypes.SetContentError,
+          payload: 'Content is required',
+        });
+        return;
+      }
 
-    const link = document.getElementById('post-img') as HTMLInputElement;
-    const replaceLink = getFileNameFromPath(link.value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const newPost = {
-      title: titleValue,
-      img: replaceLink,
-      tag: 'Technology',
-      time: formatDate(new Date().toString()),
-      user: {
-        username: 'Name',
-        avatar: 'img-user3.png',
-      },
-      content: contentValue,
-    };
+      const link = document.getElementById('post-img') as HTMLInputElement;
+      const replaceLink = getFileNameFromPath(link.value);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      const newPost = {
+        title: titleValue,
+        img: replaceLink,
+        tag: 'Technology',
+        time: formatDate(new Date().toString()),
+        user: {
+          username: 'Name',
+          avatar: 'img-user3.png',
+        },
+        content: contentValue,
+      };
 
-    try {
-      // Gọi hàm addPost từ conFigDataPost để thêm bài viết
-      const addedPost = await conFigData.addPost(newPost);
-      // Cập nhật danh sách bài viết sau khi thêm
-      setPosts([...posts, addedPost]);
+      try {
+        // Gọi hàm addPost từ conFigDataPost để thêm bài viết
+        const addedPost = await conFigData.addPost(newPost);
+        // Cập nhật danh sách bài viết sau khi thêm
+        setPosts([...posts, addedPost]);
 
-      // Gọi hàm getCount từ conFigDataTotal để lấy giá trị total hiện tại
-      const currentTotal = await conFigData.getCount();
+        // Gọi hàm getCount từ conFigDataTotal để lấy giá trị total hiện tại
+        const currentTotal = await conFigData.getCount();
 
-      // Cập nhật count bằng cách tăng thêm 1
-      const newTotal = currentTotal + 1;
+        // Cập nhật count bằng cách tăng thêm 1
+        const newTotal = currentTotal + 1;
 
-      // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
-      await conFigData.updateCount(newTotal);
-      setTotal(newTotal);
-      alert('Add Post Correct');
-      navigator('/author');
-    } catch (error) {
-      console.error('Lỗi khi thêm bài viết:', error);
-    }
-  };
+        // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
+        await conFigData.updateCount(newTotal);
+        setTotal(newTotal);
+        alert('Add Post Correct');
+        navigator('/author');
+      } catch (error) {
+        console.error('Lỗi khi thêm bài viết:', error);
+      }
+    },
+    [navigator, posts, setPosts, setTotal],
+  );
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleFileChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
 
-    if (file) {
-      const fileUrl = URL.createObjectURL(file);
-      const imgElement = document.getElementById(
-        'show-img',
-      ) as HTMLImageElement;
-      imgElement.src = fileUrl;
-    }
-  };
+      if (file) {
+        const fileUrl = URL.createObjectURL(file);
+        const imgElement = document.getElementById(
+          'show-img',
+        ) as HTMLImageElement;
+        imgElement.src = fileUrl;
+      }
+    },
+    [],
+  );
 
   return (
     <form action="#" className="d-flex flex-column">
@@ -140,7 +189,7 @@ function AddPost() {
             ref={titleRef}
           />
         </label>
-        <span id="errortitle">{titleError}</span>
+        <span id="errortitle">{state.titleError}</span>
       </div>
       <div className="mb-3">
         <h5>Post Image</h5>
@@ -157,7 +206,7 @@ function AddPost() {
         />
         <br />
         <img src={`${fileInputRef}`} alt="" id="show-img" />
-        <span id="errorimg">{fileError}</span>
+        <span id="errorimg">{state.fileError}</span>
       </div>
       <div className="form-floating">
         <textarea
@@ -170,7 +219,7 @@ function AddPost() {
         <label htmlFor="content">
           <h6>Enter Content</h6>
         </label>
-        <span id="errorcontent">{contentError}</span>
+        <span id="errorcontent">{state.contentError}</span>
         <span id="charCount">0/10000</span>
       </div>
       <button
@@ -184,4 +233,4 @@ function AddPost() {
   );
 }
 
-export default AddPost;
+export default React.memo(AddPost);

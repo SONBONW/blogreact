@@ -396,8 +396,7 @@ article h4 {
   --bs-dropdown-min-width: 0;
 }
 
-.dropdown-menu.show,
-.dropdown-menu.show li{
+.dropdown-menu.show{
  display:  inline-block;
 }
 

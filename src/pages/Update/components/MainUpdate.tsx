@@ -1,9 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../../services/conFixData';
 import { useNavigate } from 'react-router-dom';
+import { timeLog } from 'console';
+import { title } from 'process';
+
 const getFileNameFromPath = (filePath: string) => {
   // Tách đường dẫn thành mảng các phần tử
   const pathArray = filePath.split('\\');
@@ -41,55 +44,53 @@ function MainUpdate() {
   const navigate = useNavigate();
   let url = new URL(window.location.href);
   let id = url.searchParams.get('id');
-  const [error, setError] = useState(null);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [titles, setTitle] = useState('');
-  const [files, setFile] = useState('');
-  const [contents, setContent] = useState('');
-
+  const [titleValue, setTitleValue] = useState('');
+  const [fileValue, setFileValue] = useState('');
+  const [contentValue, setContentValue] = useState('');
   useEffect(() => {
     conFigData
       .getPostId(id!.toString())
       .then((post) => {
         setPosts(post);
-        setTitle(post.title);
-        setContent(post.content);
-        setFile(post.img);
+        setTitleValue(post.title);
+        setContentValue(post.content);
+        setFileValue(post.img);
       })
       .catch((error) => {
         console.log('Can not get posts in data!');
       });
   }, [id]);
 
-  const handleFileImg = () => {
-    if (files) {
-      return require(`../../../asset/img/${getFileNameFromPath(files)}`);
+  const handlerFileImg = useCallback(() => {
+    if (fileValue) {
+      return require(`../../../asset/img/${fileValue}`);
     }
-  };
+  }, [fileValue]);
 
-  const handlerUpdate = (event: React.FormEvent) => {
-    event.preventDefault();
-    const updatePost = {
-      title: titles,
-      img: files,
-      time: formatDate(new Date().toString()),
-      content: contents,
-    };
+  const handlerUpdate = useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
+      const newPost = {
+        title: titleValue,
+        img: fileValue,
+        time: formatDate(new Date().toString()),
+        content: contentValue,
+      };
 
-    conFigData
-      .updatePost(id!.toString(), updatePost)
-      .then((post) => {
-        setPosts(post);
-        setContent('');
-        setFile('');
-        setTitle('');
-        alert('Update Correct!');
-        navigate('/author');
-      })
-      .catch((error) => {
-        console.log('Can not update post in data!');
-      });
-  };
+      conFigData
+        .updatePost(id!.toString(), newPost)
+        .then((post) => {
+          setPosts(post);
+          alert('Update Correct!');
+          navigate('/author');
+        })
+        .catch((error) => {
+          console.log('Can not update post in data!');
+        });
+    },
+    [titleValue, fileValue, contentValue, id, navigate],
+  );
 
   return (
     <main className="container custorm-container px-0 create-post">
@@ -109,11 +110,10 @@ function MainUpdate() {
                 placeholder="Enter Title Post"
                 aria-label="Title"
                 aria-describedby="basic-addon1"
-                value={titles}
-                onChange={(e) => setTitle(e.target.value)}
+                value={titleValue}
+                onChange={(e) => setTitleValue(e.target.value)}
               />
             </label>
-            <span id="errortitle"></span>
           </div>
           <div className="mb-3">
             <h5>Update Image</h5>
@@ -126,11 +126,10 @@ function MainUpdate() {
               type="file"
               id="post-img"
               multiple
-              defaultValue={files}
-              onChange={(e) => setFile(e.target.value)}
+              defaultValue={fileValue}
+              onChange={(e) => setFileValue(e.target.value)}
             />
-            <img src={handleFileImg()} alt="" id="show-img" />
-            <span id="errorimg"></span>
+            <img src={handlerFileImg()} alt="" id="show-img" />
           </div>
           <div className="form-floating">
             <textarea
@@ -138,13 +137,12 @@ function MainUpdate() {
               placeholder="Enter Content"
               id="content"
               style={{ height: '350px' }}
-              value={contents}
-              onChange={(e) => setContent(e.target.value)}
+              value={contentValue}
+              onChange={(e) => setContentValue(e.target.value)}
             ></textarea>
             <label htmlFor="content">
               <h6>Enter Content</h6>
             </label>
-            <span id="errorcontent"></span>
             <span id="charCount">0/10000</span>
           </div>
           <button

@@ -21,9 +21,9 @@ interface updatePost {
 const url = 'http://localhost:3000/';
 
 const conFigData = {
-  getPost: async () => {
+  getPost: async (start: number, end: number) => {
     try {
-      const response = await axios.get(`${url}posts`);
+      const response = await axios.get(`${url}posts?_start=${start}&_end=${end}`);
       return response.data;
     } catch (error) {
       throw new Error('Unable to fetch data');
