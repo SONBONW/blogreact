@@ -3,11 +3,11 @@ import Footers from './components/Footers';
 
 interface FooterProps {}
 const Footer: React.FunctionComponent<FooterProps> = (props) => {
-  return (
-    <>
-      <Footers />
-    </>
-  );
+    return (
+        <>
+            <Footers />
+        </>
+    );
 };
 
 export default Footer;

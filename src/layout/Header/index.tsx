@@ -4,11 +4,11 @@ import Headers from './components/Headers';
 interface HeaderProps {}
 
 const Header: FunctionComponent<HeaderProps> = (prop) => {
-  return (
-    <>
-      <Headers />
-    </>
-  );
+    return (
+        <>
+            <Headers />
+        </>
+    );
 };
 
 export default Header;

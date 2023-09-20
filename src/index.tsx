@@ -12,13 +12,13 @@ import Content from './layout/Content';
 
 const root = ReactDOM.createRoot(document.getElementById('app') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Header />
-      <Content />
-      <Footer />
-    </BrowserRouter>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <BrowserRouter>
+            <Header />
+            <Content />
+            <Footer />
+        </BrowserRouter>
+    </React.StrictMode>,
 );
 
 reportWebVitals();

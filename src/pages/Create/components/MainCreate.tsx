@@ -3,13 +3,13 @@ import React from 'react';
 import AddPost from '../../../components/HandlerEvents/FormAddPost';
 
 function MainCreate() {
-  return (
-    <main className="container custorm-container px-0 create-post">
-      <div className="form-create">
-        <AddPost />
-      </div>
-    </main>
-  );
+    return (
+        <main className="container custorm-container px-0 create-post">
+            <div className="form-create">
+                <AddPost />
+            </div>
+        </main>
+    );
 }
 
 export default MainCreate;
