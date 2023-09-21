@@ -114,4 +114,4 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
     return <>{listPost}</>;
 }
 
-export default InforPost;
+export default React.memo(InforPost);

@@ -118,4 +118,4 @@ function RenderPost({ title }: getTitle) {
     );
 }
 
-export default RenderPost;
+export default React.memo(RenderPost);
