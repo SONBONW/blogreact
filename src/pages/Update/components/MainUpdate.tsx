@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DateTimeFormatOptions } from 'intl';
 import conFigData from '../../../services/conFixData';
 import { useNavigate } from 'react-router-dom';
@@ -49,35 +49,32 @@ function MainUpdate() {
             });
     }, [id]);
 
-    const handlerFileImg = useCallback(() => {
+    const handlerFileImg = () => {
         if (fileValue) {
             return require(`../../../asset/img/${fileValue}`);
         }
-    }, [fileValue]);
+    };
 
-    const handlerUpdate = useCallback(
-        async (event: React.FormEvent) => {
-            event.preventDefault();
-            const newPost = {
-                title: titleValue,
-                img: fileValue,
-                time: formatDate(new Date().toString()),
-                content: contentValue,
-            };
-            try {
-                const updatePost = await conFigData.updatePost(
-                    id!.toString(),
-                    newPost,
-                );
-                setPosts(updatePost);
-                alert('Update Correct!');
-                navigate('/author');
-            } catch (error) {
-                console.error('Lỗi khi update bài viết:', error);
-            }
-        },
-        [titleValue, fileValue, contentValue, id, navigate],
-    );
+    const handlerUpdate = async (event: React.FormEvent) => {
+        event.preventDefault();
+        const newPost = {
+            title: titleValue,
+            img: fileValue,
+            time: formatDate(new Date().toString()),
+            content: contentValue,
+        };
+        try {
+            const updatePost = await conFigData.updatePost(
+                id!.toString(),
+                newPost,
+            );
+            setPosts(updatePost);
+            alert('Update Correct!');
+            navigate('/author');
+        } catch (error) {
+            console.error('Lỗi khi update bài viết:', error);
+        }
+    };
 
     return (
         <main className="container custorm-container px-0 create-post">

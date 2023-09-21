@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useCallback } from 'react';
+import { useEffect, useReducer } from 'react';
 import GetPost from './InforPost';
 import conFigData from '../../services/conFixData';
 import React from 'react';
@@ -57,7 +57,7 @@ function RenderPost({ title }: getTitle) {
             });
     }, [state.total]);
 
-    const handlerClickViewPost = useCallback(() => {
+    const handlerClickViewPost = () => {
         // if (state.postEnd === state.total) {
         //   dispatch({ type: ActionTypes.SetPostStart, payload: 0 });
         //   dispatch({ type: ActionTypes.SetPostEnd, payload: 3 });
@@ -93,7 +93,7 @@ function RenderPost({ title }: getTitle) {
                 dispatch({ type: ActionTypes.SetPostEnd, payload: 3 });
             }
         }
-    }, [state]);
+    };
 
     return (
         <>
@@ -106,7 +106,7 @@ function RenderPost({ title }: getTitle) {
       >
         {title}
       </button> */}
-            {state.postEnd <= state.total ? ( // Kiểm tra xem có hiển thị nút "Xem thêm" hay không
+            {state.postEnd < state.total ? ( // Kiểm tra xem có hiển thị nút "Xem thêm" hay không
                 <button
                     className="view rounded d-flex justify-content-center align-items-center"
                     onClick={handlerClickViewPost}
@@ -118,4 +118,4 @@ function RenderPost({ title }: getTitle) {
     );
 }
 
-export default React.memo(RenderPost);
+export default RenderPost;
