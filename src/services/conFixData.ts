@@ -81,7 +81,7 @@ const conFigData = {
             );
             return responsive.data;
         } catch (error) {
-            throw new Error('Unable to update post');
+            console.log('Unable to update post');
         }
     },
     getCount: async () => {
@@ -93,7 +93,7 @@ const conFigData = {
             const totalCount = response.data.count;
             return totalCount;
         } catch {
-            throw new Error('Can not get total!');
+            console.log('Can not get total!');
         }
     },
     updateCount: async (newCount: number) => {
