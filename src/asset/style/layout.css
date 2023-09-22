@@ -209,7 +209,7 @@ nav ul li a:hover {
   background-color: var(--btn-primary);
 }
 
-.switch-toggle:checked + .vector {
+.switch-toggle:checked+.vector {
   left: 28px;
 }
 
@@ -391,7 +391,7 @@ article h4 {
 }
 
 .edit a:hover,
-.edit a:focus{
+.edit a:focus {
   color: var(--red);
 }
 
@@ -399,12 +399,12 @@ article h4 {
   transform: translate3d(-35px, 24px, 0px) !important;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   --bs-dropdown-min-width: 0;
 }
 
-.dropdown-menu.show{
- display:  inline-block;
+.dropdown-menu.show {
+  display: inline-block;
 }
 
 
@@ -420,7 +420,7 @@ article h4 {
   margin-bottom: 5px;
 }
 
-.btn-delete:hover{
+.btn-delete:hover {
   color: var(--red);
 }
 
@@ -1018,6 +1018,10 @@ strong {
 .changecolor .form-create form {
   background-color: var(--secondary-800);
   border-color: var(--secondary-700);
+}
+
+.changecolor .form-floating h6 {
+  background-color: var(--secondary-800) !important;
 }
 
 /*Dark Single Post*/
