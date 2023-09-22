@@ -106,6 +106,25 @@
     margin-left: 10px !important;
   }
 
+  /*Input Show*/
+  .show-nav {
+    display: none !important;
+  }
+
+  .show-input {
+    width: 75%;
+  }
+
+  .show-input .item-ipt:first-child,
+  .show-input .item-ipt:first-child input {
+    width: 85%;
+  }
+
+  .show-input .item-ipt:first-child button {
+    border-radius: 0 5px 5px 0 !important;
+  }
+
+
   /*Main Create Post*/
   .form-create form {
     position: relative;
@@ -161,6 +180,7 @@
   .form-introduce {
     left: 30px;
     width: 65%;
+    margin: -150px auto 0 auto !important;
   }
 
   .form-introduce h2 {
@@ -178,6 +198,28 @@
   .single-post .form-introduce {
     margin: 0 !important;
     width: 100%;
+  }
+
+  /*Input Show*/
+  .show-logo,
+  .show-dark {
+    display: none !important;
+  }
+
+  .show-input,
+  .show-input .item-ipt:first-child {
+    margin: 0 !important;
+  }
+
+  .show-input,
+  .show-input div,
+  .show-input input {
+    width: 100% !important;
+  }
+
+  .show-input .item-ipt:first-child button {
+    border-radius: 0 5px 5px 0 !important;
+    border: none;
   }
 
   /*Footer*/
@@ -228,7 +270,7 @@
     content: none !important;
   }
 
-  .switch-toggle:checked + .vector {
+  .switch-toggle:checked+.vector {
     left: 10px;
     filter: brightness(0) invert(1);
     -webkit-filter: brightness(0) invert(1);
@@ -243,6 +285,7 @@
 
   .form-introduce {
     padding: 10px !important;
+    margin: -85px auto 0 auto !important;
   }
 
   .form-introduce h2 {
@@ -253,10 +296,6 @@
 
   .form-introduce .time {
     margin-left: 10px;
-  }
-
-  .post {
-    width: 72%;
   }
 
   .user span {
@@ -284,9 +323,9 @@
     font-size: 14px !important;
     margin-left: 45px !important;
   }
+
   .infor-list .user img {
     position: relative;
-    top: 10px;
   }
 
   /*Main Blog Listing*/
@@ -343,10 +382,10 @@
 }
 
 /* Option follow device */
-@media (min-width: 1500px) {
-}
+@media (min-width: 1500px) {}
 
 @media (max-width: 991px) {
+
   /*HEADER*/
   .item-ipt:first-child {
     margin-right: 20px !important;
@@ -358,8 +397,8 @@
 
   .item-ipt:first-child button {
     padding: 8px;
-    border-radius: 5px !important;
-    background-color: white;
+    border-radius: 10px !important;
+    background-color: var(--secondary-100-f);
   }
 
   /*Main*/
@@ -458,7 +497,7 @@
 
   .form-introduce {
     position: relative !important;
-    margin: -150px auto 0 auto !important;
+
     bottom: 0 !important;
     left: 0 !important;
     padding: 20px !important;
@@ -477,6 +516,10 @@
   .posts {
     margin: 0 auto;
     justify-content: center;
+  }
+
+  .img-post {
+    width: 100%;
   }
 
   article .user span {

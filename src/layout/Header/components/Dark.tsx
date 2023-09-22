@@ -1,7 +1,9 @@
 // import React from "react";
 import React, { useState, useEffect } from 'react';
-
-function Dark() {
+interface InputProps {
+    handler: boolean;
+}
+function Dark({ handler }: InputProps) {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
@@ -20,7 +22,10 @@ function Dark() {
     };
 
     return (
-        <label htmlFor="light-dark" className="item-ipt">
+        <label
+            htmlFor="light-dark"
+            className={`item-ipt ${!handler ? '' : 'show-dark'}`}
+        >
             <input
                 type="checkbox"
                 name="checkbox"

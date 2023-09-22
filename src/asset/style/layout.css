@@ -166,6 +166,8 @@ nav ul li a:hover {
   position: relative;
 }
 
+/*Input Show*/
+
 .vector {
   position: absolute;
   top: 7px;
@@ -313,6 +315,7 @@ nav ul li a:hover {
   line-height: 26px;
 }
 
+
 .advertisement h4 {
   font-family: var(--font-WorkSansSemiBold);
   font-weight: var(--font-w6);
@@ -341,6 +344,10 @@ nav ul li a:hover {
   border-radius: 12px;
   border: 1px solid var(--secondary-100);
   margin: 10px auto;
+}
+
+.posts div {
+  padding: 0 10px !important;
 }
 
 article .tag {

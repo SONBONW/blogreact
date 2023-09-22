@@ -59,11 +59,15 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
               const avatarSrc = require(`../../asset/img/${post.user.avatar}`);
               return (
                   <div
-                      className="col-lg-4 col-md-6 col-sm-8 col-12"
+                      className="col-lg-4 col-md-6 col-sm-10 col-12"
                       key={post.id}
                   >
                       <article className="post">
-                          <img className="img-fluid" src={imgSrc} alt="" />
+                          <img
+                              className="img-fluid img-post"
+                              src={imgSrc}
+                              alt=""
+                          />
                           <span className="tag rounded">{post.tag}</span>
                           <div className="edit rounded dropdown">
                               <Link
