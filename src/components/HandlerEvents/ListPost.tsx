@@ -47,14 +47,16 @@ function RenderPost({ title }: GetTitle) {
     const [state, dispatch] = useReducer(postReducer, initialState);
 
     useEffect(() => {
-        conFigData
-            .getCount()
-            .then((total) => {
-                dispatch({ type: ActionTypes.SetTotal, payload: total });
-            })
-            .catch((error) => {
-                console.log('Can not get count in total from data');
-            });
+        const getCount = async () => {
+            try {
+                const count = await conFigData.getCount();
+                dispatch({ type: ActionTypes.SetTotal, payload: count });
+            } catch (error) {
+                console.log('Error');
+            }
+        };
+
+        getCount();
     }, [state.total]);
 
     const handlerClickViewPost = useCallback(() => {

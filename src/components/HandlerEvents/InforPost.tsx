@@ -46,9 +46,6 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
                 if (!posts) {
                     return;
                 }
-                // Gọi component DeletePost để xóa bài viết
-                // Sau khi xóa thành công, component này sẽ gọi onDelete để thông báo
-                // Cập nhật danh sách bài viết sau khi xóa
                 setPosts(posts.filter((post: Post) => post.id !== postId));
             } catch {
                 console.log('Can not delete post');

@@ -36,17 +36,19 @@ function MainUpdate() {
     const [fileValue, setFileValue] = useState('');
     const [contentValue, setContentValue] = useState('');
     useEffect(() => {
-        conFigData
-            .getPostId(id!.toString())
-            .then((post) => {
-                setPosts(post);
-                setTitleValue(post.title);
-                setContentValue(post.content);
-                setFileValue(post.img);
-            })
-            .catch((error) => {
-                console.log('Can not get posts in data!');
-            });
+        const getPost = async () => {
+            try {
+                const infor = await conFigData.getPostId(id!.toString());
+                setPosts(infor);
+                setTitleValue(infor.title);
+                setContentValue(infor.content);
+                setFileValue(infor.img);
+                getPost();
+            } catch (error) {
+                console.log('Error');
+            }
+        };
+        getPost();
     }, [id]);
 
     const handlerFileImg = useMemo(() => {
