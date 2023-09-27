@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import DeletePost from '../ButtonDelete';
-import conFigData from '../../services/conFixData';
+import conFigData from '../../services/conFigData';
 
 interface GetDataProps {
     postEnd: number;
@@ -40,19 +40,22 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
 
     useEffect(() => {}, [posts]);
 
-    const handleDeletePost = async (postId: number) => {
-        try {
-            if (!posts) {
-                return;
+    const handleDeletePost = useCallback(
+        async (postId: number) => {
+            try {
+                if (!posts) {
+                    return;
+                }
+                // Gọi component DeletePost để xóa bài viết
+                // Sau khi xóa thành công, component này sẽ gọi onDelete để thông báo
+                // Cập nhật danh sách bài viết sau khi xóa
+                setPosts(posts.filter((post: Post) => post.id !== postId));
+            } catch {
+                console.log('Can not delete post');
             }
-            // Gọi component DeletePost để xóa bài viết
-            // Sau khi xóa thành công, component này sẽ gọi onDelete để thông báo
-            // Cập nhật danh sách bài viết sau khi xóa
-            setPosts(posts.filter((post: Post) => post.id !== postId));
-        } catch {
-            console.log('Can not delete post');
-        }
-    };
+        },
+        [posts],
+    );
     const listPost = posts
         ? posts.map((post: Post) => {
               const imgSrc = require(`../../asset/img/${post.img}`);

@@ -1,9 +1,9 @@
-import { useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import GetPost from './InforPost';
-import conFigData from '../../services/conFixData';
+import conFigData from '../../services/conFigData';
 import React from 'react';
 
-interface getTitle {
+interface GetTitle {
     title: string;
 }
 
@@ -37,7 +37,7 @@ const postReducer = (
     }
 };
 
-function RenderPost({ title }: getTitle) {
+function RenderPost({ title }: GetTitle) {
     const initialState: PostState = {
         postStart: 0,
         postEnd: 3,
@@ -57,7 +57,7 @@ function RenderPost({ title }: getTitle) {
             });
     }, [state.total]);
 
-    const handlerClickViewPost = () => {
+    const handlerClickViewPost = useCallback(() => {
         // if (state.postEnd === state.total) {
         //   dispatch({ type: ActionTypes.SetPostStart, payload: 0 });
         //   dispatch({ type: ActionTypes.SetPostEnd, payload: 3 });
@@ -93,7 +93,7 @@ function RenderPost({ title }: getTitle) {
                 dispatch({ type: ActionTypes.SetPostEnd, payload: 3 });
             }
         }
-    };
+    }, [state.postEnd, state.postStart, state.total]);
 
     return (
         <>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import conFigData from '../../services/conFixData';
+import conFigData from '../../services/conFigData';
 
 interface DeleteProps {
     onDeleteSuccess: () => void;

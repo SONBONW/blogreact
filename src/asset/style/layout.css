@@ -233,6 +233,8 @@ nav ul li a:hover {
 
 .create-new-post a {
   font-size: 25px;
+  position: absolute;
+  transform: translate3d(-50%, -50%, 0);
 }
 
 /*Main Home Page*/

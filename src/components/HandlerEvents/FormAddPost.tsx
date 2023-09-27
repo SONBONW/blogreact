@@ -1,6 +1,6 @@
-import React, { useState, useRef, useReducer } from 'react';
+import React, { useState, useRef, useReducer, useCallback } from 'react';
 import { DateTimeFormatOptions } from 'intl';
-import conFigData from '../../services/conFixData';
+import conFigData from '../../services/conFigData';
 import { useNavigate } from 'react-router-dom';
 
 const formatDate = (dateString: string) => {
@@ -14,11 +14,8 @@ const formatDate = (dateString: string) => {
 };
 
 const getFileNameFromPath = (filePath: string) => {
-    // Tách đường dẫn thành mảng các phần tử
     const pathArray = filePath.split('\\');
-    // Lấy phần tử cuối cùng của mảng (tên file)
     const fileName = pathArray[pathArray.length - 1];
-    // Trả về tên file
     return fileName;
 };
 
@@ -76,84 +73,88 @@ function AddPost() {
     const [, setTotal] = useState();
     const navigator = useNavigate();
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
+    const handleSubmit = useCallback(
+        async (event: React.FormEvent) => {
+            event.preventDefault();
 
-        const titleValue = titleRef.current?.value || '';
-        const contentValue = contentRef.current?.value || '';
-        const selectedFile = fileInputRef.current?.files?.[0];
+            const titleValue = titleRef.current?.value || '';
+            const contentValue = contentRef.current?.value || '';
+            const selectedFile = fileInputRef.current?.files?.[0];
 
-        if (!titleValue) {
-            dispatch({
-                type: ActionTypes.SetTitleError,
-                payload: 'Title is required',
-            });
-            return;
-        }
+            if (!titleValue) {
+                dispatch({
+                    type: ActionTypes.SetTitleError,
+                    payload: 'Title is required',
+                });
+                return;
+            }
 
-        if (!selectedFile) {
-            dispatch({
-                type: ActionTypes.SetFileError,
-                payload: 'File is required',
-            });
-            return;
-        }
+            if (!selectedFile) {
+                dispatch({
+                    type: ActionTypes.SetFileError,
+                    payload: 'File is required',
+                });
+                return;
+            }
 
-        if (!contentValue) {
-            dispatch({
-                type: ActionTypes.SetContentError,
-                payload: 'Content is required',
-            });
-            return;
-        }
+            if (!contentValue) {
+                dispatch({
+                    type: ActionTypes.SetContentError,
+                    payload: 'Content is required',
+                });
+                return;
+            }
 
-        const link = document.getElementById('post-img') as HTMLInputElement;
-        const replaceLink = getFileNameFromPath(link.value);
-        const newPost = {
-            title: titleValue,
-            img: replaceLink,
-            tag: 'Technology',
-            time: formatDate(new Date().toString()),
-            user: {
-                username: 'Name',
-                avatar: 'img-user3.png',
-            },
-            content: contentValue,
-        };
+            const link = document.getElementById(
+                'post-img',
+            ) as HTMLInputElement;
+            const replaceLink = getFileNameFromPath(link.value);
+            const newPost = {
+                title: titleValue,
+                img: replaceLink,
+                tag: 'Technology',
+                time: formatDate(new Date().toString()),
+                user: {
+                    username: 'Name',
+                    avatar: 'img-user3.png',
+                },
+                content: contentValue,
+            };
 
-        try {
-            // Gọi hàm addPost từ conFigDataPost để thêm bài viết
-            const addedPost = await conFigData.addPost(newPost);
-            // Cập nhật danh sách bài viết sau khi thêm
-            setPosts([...posts, addedPost]);
+            try {
+                const addedPost = await conFigData.addPost(newPost);
+                setPosts([...posts, addedPost]);
 
-            // Gọi hàm getCount từ conFigDataTotal để lấy giá trị total hiện tại
-            const currentTotal = await conFigData.getCount();
+                const currentTotal = await conFigData.getCount();
 
-            // Cập nhật count bằng cách tăng thêm 1
-            const newTotal = currentTotal + 1;
+                const newTotal = currentTotal + 1;
 
-            // Gọi hàm updateCount từ conFigDataTotal để cập nhật giá trị count mới
-            await conFigData.updateCount(newTotal);
-            setTotal(newTotal);
-            alert('Add Post Correct');
-            navigator('/author');
-        } catch (error) {
-            console.error('Lỗi khi thêm bài viết:', error);
-        }
-    };
+                await conFigData.updateCount(newTotal);
+                setTotal(newTotal);
+                alert('Add Post Correct');
+                navigator('/author');
+            } catch (error) {
+                console.error('Lỗi khi thêm bài viết:', error);
+            }
+        },
+        [navigator, posts],
+    );
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
+    const handleFileChange = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            const file = event.target.files?.[0];
 
-        if (file) {
-            const fileUrl = URL.createObjectURL(file);
-            const imgElement = document.getElementById(
-                'show-img',
-            ) as HTMLImageElement;
-            imgElement.src = fileUrl;
-        }
-    };
+            if (file) {
+                const fileUrl = URL.createObjectURL(file);
+                const imgElement = document.getElementById(
+                    'show-img',
+                ) as HTMLImageElement;
+                imgElement.src = fileUrl;
+            }
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [fileInputRef.current?.files?.[0].name],
+    );
 
     return (
         <form action="#" className="d-flex flex-column">
@@ -233,4 +234,4 @@ function AddPost() {
     );
 }
 
-export default AddPost;
+export default React.memo(AddPost);
