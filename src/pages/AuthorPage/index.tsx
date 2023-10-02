@@ -1,10 +1,10 @@
 import React from 'react';
-import MainAuthor from './components/MainAuthor';
+import Main from './components/Main';
 
 function Author() {
     return (
         <>
-            <MainAuthor />
+            <Main />
         </>
     );
 }

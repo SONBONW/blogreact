@@ -1,10 +1,10 @@
 import React from 'react';
-import MainUpdate from './components/MainUpdate';
+import Main from './components/Main';
 
 function Update() {
     return (
         <>
-            <MainUpdate />
+            <Main />
         </>
     );
 }

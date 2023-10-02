@@ -1,10 +1,10 @@
 import React from 'react';
-import MainBlog from './conponents/MainBlog';
+import Main from './components/Main';
 
 function Blog() {
     return (
         <>
-            <MainBlog />
+            <Main />
         </>
     );
 }

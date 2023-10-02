@@ -1,10 +1,10 @@
 import React from 'react';
-import MainSingle from './components/MainSingle';
+import Main from './components/Main';
 
 function Single() {
     return (
         <>
-            <MainSingle />
+            <Main />
         </>
     );
 }
