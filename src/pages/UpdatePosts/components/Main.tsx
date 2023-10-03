@@ -119,7 +119,6 @@ function MainUpdate() {
                             className="form-control"
                             placeholder="Enter Content"
                             id="content"
-                            style={{ height: '250px' }}
                             value={contentValue}
                             onChange={(e) => setContentValue(e.target.value)}
                         ></textarea>

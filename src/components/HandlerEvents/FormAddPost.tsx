@@ -202,7 +202,6 @@ function AddPost() {
                     className="form-control"
                     placeholder="Enter Content"
                     id="content"
-                    style={{ height: '350px' }}
                     ref={contentRef}
                 ></textarea>
                 <label htmlFor="content">

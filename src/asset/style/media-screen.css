@@ -235,6 +235,8 @@
 
   /*Header*/
 
+
+
   .nav-header ul {
     flex-direction: column !important;
     padding-top: 10px;
@@ -420,6 +422,7 @@
 }
 
 @media (min-width: 768px) {
+
   .noPaddingLeft {
     padding-left: 0;
   }
@@ -444,6 +447,7 @@
 
   .nav-header {
     margin: 0 auto !important;
+    padding: 10px 0;
   }
 
   .nav-header ul {

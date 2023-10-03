@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import '../asset/style/layout.css';
 import logo from '../../../asset/img/logo-header.png';
 import Input from './Search';
 import Dark from './Dark';

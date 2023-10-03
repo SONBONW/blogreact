@@ -618,9 +618,9 @@ article h4 {
   transform: rotateZ(-22deg);
 }
 
-/* #show-img {
-    margin-left: 100px;
-} */
+#content {
+  height: 250px;
+}
 
 #post-img[type='file'] {
   display: none;
@@ -1063,4 +1063,12 @@ strong {
 
 .changecolor .section-first .person-infor div p:first-child {
   color: var(--var-color-white);
+}
+
+
+
+/*No Data*/
+.no-data {
+  color: var(--secondary-500);
+  text-align: center;
 }

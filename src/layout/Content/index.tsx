@@ -24,16 +24,7 @@ const Content: React.FunctionComponent = () => {
             <Route
                 path="/contact/*"
                 element={
-                    <h1
-                        style={{
-                            textAlign: 'center',
-                            color: '#79afad',
-                            boxShadow: '9px 11px 20px 0 #ffe4f2',
-                        }}
-                    >
-                        {' '}
-                        Have not main page for Contact{' '}
-                    </h1>
+                    <h1 className="no-data">Have not data for page Contact</h1>
                 }
             />
         </Routes>

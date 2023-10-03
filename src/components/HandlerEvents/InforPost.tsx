@@ -31,7 +31,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
                 const posts = await conFigData.getPost(postStart, postEnd);
                 setPosts(posts);
             } catch (error) {
-                console.log('Error');
+                console.log('Error get post');
             }
         };
 
@@ -115,7 +115,11 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
               );
           })
         : [];
-    return <>{listPost}</>;
+    if (listPost.length === 0) {
+        return <h1 className="no-data">No data</h1>;
+    } else {
+        return <>{listPost}</>;
+    }
 }
 
 export default React.memo(InforPost);

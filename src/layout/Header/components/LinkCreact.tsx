@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 function NavCreate() {
     return (
@@ -14,7 +14,7 @@ function NavCreate() {
                 </svg>
             </Link>
         </button>
-    );
+    )
 }
 
-export default NavCreate;
+export default NavCreate
