@@ -209,7 +209,6 @@ function AddPost() {
                     <h6>Enter Content</h6>
                 </label>
                 <span id="errorcontent">{state.contentError}</span>
-                <span id="charCount">0/10000</span>
             </div>
             <button
                 id="submit"

@@ -13,25 +13,16 @@ const formatDate = (dateString: string) => {
     };
     return date.toLocaleDateString('en-US', options);
 };
-
-interface Post {
-    id: number;
-    img: string;
-    tag: string;
-    title: string;
-    time: string;
-    user: {
-        username: string;
-        avatar: string;
-    };
-    content: string;
-}
+const getFileNameFromPath = (filePath: string) => {
+    const pathArray = filePath.split('\\');
+    const fileName = pathArray[pathArray.length - 1];
+    return fileName;
+};
 
 function MainUpdate() {
     const navigate = useNavigate();
     let url = new URL(window.location.href);
     let id = url.searchParams.get('id');
-    const [, setPosts] = useState<Post[]>([]);
     const [titleValue, setTitleValue] = useState('');
     const [fileValue, setFileValue] = useState('');
     const [contentValue, setContentValue] = useState('');
@@ -39,11 +30,10 @@ function MainUpdate() {
         const getPost = async () => {
             try {
                 const infor = await conFigData.getPostId(id!.toString());
-                setPosts(infor);
                 setTitleValue(infor.title);
                 setContentValue(infor.content);
                 setFileValue(infor.img);
-                getPost();
+                console.log('call use');
             } catch (error) {
                 console.log('Error');
             }
@@ -51,10 +41,13 @@ function MainUpdate() {
         getPost();
     }, [id]);
 
-    const handlerFileImg = useMemo(() => {
+    const imageUrl = useMemo(() => {
         if (fileValue) {
-            return require(`../../../asset/img/${fileValue}`);
+            return require(
+                `../../../asset/img/${getFileNameFromPath(fileValue)}`,
+            );
         }
+        return getFileNameFromPath(fileValue);
     }, [fileValue]);
 
     const handlerUpdate = useCallback(
@@ -67,11 +60,7 @@ function MainUpdate() {
                 content: contentValue,
             };
             try {
-                const updatePost = await conFigData.updatePost(
-                    id!.toString(),
-                    newPost,
-                );
-                setPosts(updatePost);
+                await conFigData.updatePost(id!.toString(), newPost);
                 alert('Update Correct!');
                 navigate('/author');
             } catch (error) {
@@ -102,8 +91,8 @@ function MainUpdate() {
                                 placeholder="Enter Title Post"
                                 aria-label="Title"
                                 aria-describedby="basic-addon1"
-                                value={titleValue}
                                 onChange={(e) => setTitleValue(e.target.value)}
+                                value={titleValue}
                             />
                         </label>
                     </div>
@@ -121,24 +110,22 @@ function MainUpdate() {
                             type="file"
                             id="post-img"
                             multiple
-                            defaultValue={fileValue}
                             onChange={(e) => setFileValue(e.target.value)}
                         />
-                        <img src={handlerFileImg} alt="" id="show-img" />
+                        <img src={imageUrl} alt="" id="show-img" />
                     </div>
                     <div className="form-floating">
                         <textarea
                             className="form-control"
                             placeholder="Enter Content"
                             id="content"
-                            style={{ height: '350px' }}
+                            style={{ height: '250px' }}
                             value={contentValue}
                             onChange={(e) => setContentValue(e.target.value)}
                         ></textarea>
                         <label htmlFor="content">
                             <h6>Enter Content</h6>
                         </label>
-                        <span id="charCount">0/10000</span>
                     </div>
                     <button
                         id="submit"
