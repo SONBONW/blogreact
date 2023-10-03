@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 interface InputProps {
     handler: boolean;
 }
@@ -6,24 +6,24 @@ function Dark({ handler }: InputProps) {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
-        const mode = localStorage.getItem('ChangeColorPage');
-        if (mode === 'true') {
-            document.body.classList.add('changecolor');
+        const mode = localStorage.getItem("ChangeColorPage");
+        if (mode === "true") {
+            document.body.classList.add("changecolor");
             setIsDarkMode(true);
         }
     }, []);
 
     const toggleDarkMode = () => {
         const newMode = !isDarkMode;
-        document.body.classList.toggle('changecolor', newMode);
-        localStorage.setItem('ChangeColorPage', newMode.toString());
+        document.body.classList.toggle("changecolor", newMode);
+        localStorage.setItem("ChangeColorPage", newMode.toString());
         setIsDarkMode(newMode);
     };
 
     return (
         <label
             htmlFor="light-dark"
-            className={`item-ipt ${!handler ? '' : 'show-dark'}`}
+            className={`item-ipt ${!handler ? "" : "show-dark"}`}
         >
             <input
                 type="checkbox"

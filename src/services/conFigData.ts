@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 interface Post {
     img: string;
@@ -18,7 +18,7 @@ interface updatePost {
     time: string;
     content: string;
 }
-const url = 'http://localhost:3000/';
+const url = "http://localhost:3000/";
 const controller = new AbortController();
 
 const CancelToken = axios.CancelToken;
@@ -36,7 +36,7 @@ const conFigData = {
             );
             return response.data;
         } catch (error) {
-            console.log('Unable to fetch data');
+            console.log("Unable to fetch data");
         }
     },
     getPostId: async (id: string) => {
@@ -47,7 +47,7 @@ const conFigData = {
             });
             return response.data;
         } catch (error) {
-            console.log('Unable to fetch data');
+            console.log("Unable to fetch data");
         }
     },
     addPost: async (newPost: Post) => {
@@ -57,7 +57,7 @@ const conFigData = {
             });
             return response.data;
         } catch {
-            console.log('Unable to add post');
+            console.log("Unable to add post");
         }
     },
     deletePost: async (id: string) => {
@@ -67,7 +67,7 @@ const conFigData = {
             });
             return response.data;
         } catch (error) {
-            console.log('Unable to delete post');
+            console.log("Unable to delete post");
         }
     },
     updatePost: async (id: string, updatePost: updatePost) => {
@@ -81,7 +81,7 @@ const conFigData = {
             );
             return responsive.data;
         } catch (error) {
-            console.log('Unable to update post');
+            console.log("Unable to update post");
         }
     },
     getCount: async () => {
@@ -93,7 +93,7 @@ const conFigData = {
             const totalCount = response.data.count;
             return totalCount;
         } catch {
-            console.log('Can not get total!');
+            console.log("Can not get total!");
         }
     },
     updateCount: async (newCount: number) => {
@@ -109,7 +109,7 @@ const conFigData = {
             );
             return response.data;
         } catch {
-            console.log('Can not update count in total!');
+            console.log("Can not update count in total!");
         }
     },
 };

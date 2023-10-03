@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { DateTimeFormatOptions } from 'intl';
-import conFigData from '../../../services/conFigData';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { DateTimeFormatOptions } from "intl";
+import conFigData from "../../../services/conFigData";
+import { useNavigate } from "react-router-dom";
 
 /*Get Time Now*/
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const options: DateTimeFormatOptions = {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
+        month: "long",
+        day: "numeric",
+        year: "numeric",
     };
-    return date.toLocaleDateString('en-US', options);
+    return date.toLocaleDateString("en-US", options);
 };
 const getFileNameFromPath = (filePath: string) => {
-    const pathArray = filePath.split('\\');
+    const pathArray = filePath.split("\\");
     const fileName = pathArray[pathArray.length - 1];
     return fileName;
 };
@@ -22,10 +22,10 @@ const getFileNameFromPath = (filePath: string) => {
 function MainUpdate() {
     const navigate = useNavigate();
     let url = new URL(window.location.href);
-    let id = url.searchParams.get('id');
-    const [titleValue, setTitleValue] = useState('');
-    const [fileValue, setFileValue] = useState('');
-    const [contentValue, setContentValue] = useState('');
+    let id = url.searchParams.get("id");
+    const [titleValue, setTitleValue] = useState("");
+    const [fileValue, setFileValue] = useState("");
+    const [contentValue, setContentValue] = useState("");
     useEffect(() => {
         const getPost = async () => {
             try {
@@ -33,9 +33,9 @@ function MainUpdate() {
                 setTitleValue(infor.title);
                 setContentValue(infor.content);
                 setFileValue(infor.img);
-                console.log('call use');
+                console.log("call use");
             } catch (error) {
-                console.log('Error');
+                console.log("Error");
             }
         };
         getPost();
@@ -61,10 +61,10 @@ function MainUpdate() {
             };
             try {
                 await conFigData.updatePost(id!.toString(), newPost);
-                alert('Update Correct!');
-                navigate('/author');
+                alert("Update Correct!");
+                navigate("/author");
             } catch (error) {
-                console.error('Lỗi khi update bài viết:', error);
+                console.error("Lỗi khi update bài viết:", error);
             }
         },
         [titleValue, fileValue, contentValue, id, navigate],

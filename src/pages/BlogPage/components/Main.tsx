@@ -1,9 +1,9 @@
-import React from 'react';
-import Advertisement from '../../../components/Advertisement';
-import RenderPost from '../../../components/HandlerEvents/ListPost';
-import { Link } from 'react-router-dom';
-import img from '../../../asset/img/img.png';
-import user from '../../../asset/img/img-user6.png';
+import React from "react";
+import Advertisement from "../../../components/Advertisement";
+import RenderPost from "../../../components/HandlerEvents/ListPost";
+import { Link } from "react-router-dom";
+import img from "../../../asset/img/img.png";
+import user from "../../../asset/img/img-user6.png";
 
 function MainBlog() {
     return (
@@ -37,7 +37,7 @@ function MainBlog() {
                 </div>
             </section>
             <section className="list-post overflow-hidden">
-                <RenderPost title={'Load More'} />
+                <RenderPost title={"Load More"} />
             </section>
             <Advertisement />
         </main>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import conFigData from '../../services/conFigData';
+import React, { useState } from "react";
+import conFigData from "../../services/conFigData";
 
 interface DeleteProps {
     onDeleteSuccess: () => void;
@@ -23,7 +23,7 @@ const DeletePost: React.FC<DeleteProps> = (props) => {
             }
             onDeleteSuccess();
         } catch {
-            console.log('Can not delete post');
+            console.log("Can not delete post");
         }
     };
 

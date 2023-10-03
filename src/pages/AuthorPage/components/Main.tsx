@@ -1,7 +1,7 @@
-import React from 'react';
-import RenderPost from '../../../components/HandlerEvents/ListPost';
-import { Link } from 'react-router-dom';
-import user from '../../../asset/img/img-user1-64px.png';
+import React from "react";
+import RenderPost from "../../../components/HandlerEvents/ListPost";
+import { Link } from "react-router-dom";
+import user from "../../../asset/img/img-user1-64px.png";
 
 function MainAuthor() {
     return (
@@ -27,7 +27,7 @@ function MainAuthor() {
                         </p>
                     </article>
                     <article className="list-icon text-center">
-                        <Link to={''}>
+                        <Link to={""}>
                             <svg
                                 width="14"
                                 height="14"
@@ -43,7 +43,7 @@ function MainAuthor() {
                                 />
                             </svg>
                         </Link>
-                        <Link to={''}>
+                        <Link to={""}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -57,7 +57,7 @@ function MainAuthor() {
                                 />
                             </svg>
                         </Link>
-                        <Link to={''}>
+                        <Link to={""}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -79,7 +79,7 @@ function MainAuthor() {
                                 />
                             </svg>
                         </Link>
-                        <Link to={''}>
+                        <Link to={""}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -98,7 +98,7 @@ function MainAuthor() {
             </section>
             <section className="list-post overflow-hidden">
                 <h4 className="title">Latest Post</h4>
-                <RenderPost title={'Load More'} />
+                <RenderPost title={"Load More"} />
             </section>
         </main>
     );

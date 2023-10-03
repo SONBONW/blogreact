@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import DeletePost from '../ButtonDelete';
-import conFigData from '../../services/conFigData';
+import React, { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import DeletePost from "../ButtonDelete";
+import conFigData from "../../services/conFigData";
 
 interface GetDataProps {
     postEnd: number;
@@ -31,7 +31,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
                 const posts = await conFigData.getPost(postStart, postEnd);
                 setPosts(posts);
             } catch (error) {
-                console.log('Error get post');
+                console.log("Error get post");
             }
         };
 
@@ -48,7 +48,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
                 }
                 setPosts(posts.filter((post: Post) => post.id !== postId));
             } catch {
-                console.log('Can not delete post');
+                console.log("Can not delete post");
             }
         },
         [posts],

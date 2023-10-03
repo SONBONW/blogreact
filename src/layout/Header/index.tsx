@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import Headers from './components/Headers';
+import React, { FunctionComponent } from "react";
+import Headers from "./components/Headers";
 
 interface HeaderProps {}
 

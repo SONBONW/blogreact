@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
-import AddPost from '../../../components/HandlerEvents/FormAddPost';
+import React from "react";
+import AddPost from "../../../components/HandlerEvents/FormAddPost";
 
 function MainCreate() {
     return (

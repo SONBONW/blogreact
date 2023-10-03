@@ -1,20 +1,20 @@
-import React, { useState, useRef, useReducer, useCallback } from 'react';
-import { DateTimeFormatOptions } from 'intl';
-import conFigData from '../../services/conFigData';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useReducer, useCallback } from "react";
+import { DateTimeFormatOptions } from "intl";
+import conFigData from "../../services/conFigData";
+import { useNavigate } from "react-router-dom";
 
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const options: DateTimeFormatOptions = {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
+        month: "long",
+        day: "numeric",
+        year: "numeric",
     };
-    return date.toLocaleDateString('en-US', options);
+    return date.toLocaleDateString("en-US", options);
 };
 
 const getFileNameFromPath = (filePath: string) => {
-    const pathArray = filePath.split('\\');
+    const pathArray = filePath.split("\\");
     const fileName = pathArray[pathArray.length - 1];
     return fileName;
 };
@@ -38,9 +38,9 @@ interface InputError {
 }
 
 enum ActionTypes {
-    SetTitleError = 'SET_TITLE_ERROR',
-    SetFileError = 'SET_FILE_ERROR',
-    SetContentError = 'SET_CONTENT_ERROR',
+    SetTitleError = "SET_TITLE_ERROR",
+    SetFileError = "SET_FILE_ERROR",
+    SetContentError = "SET_CONTENT_ERROR",
 }
 
 const errorReducer = (
@@ -64,9 +64,9 @@ function AddPost() {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const contentRef = useRef<HTMLTextAreaElement | null>(null);
     const initialState: InputError = {
-        titleError: '',
-        contentError: '',
-        fileError: '',
+        titleError: "",
+        contentError: "",
+        fileError: "",
     };
     const [state, dispatch] = useReducer(errorReducer, initialState);
     const [posts, setPosts] = useState<Post[]>([]);
@@ -77,14 +77,14 @@ function AddPost() {
         async (event: React.FormEvent) => {
             event.preventDefault();
 
-            const titleValue = titleRef.current?.value || '';
-            const contentValue = contentRef.current?.value || '';
+            const titleValue = titleRef.current?.value || "";
+            const contentValue = contentRef.current?.value || "";
             const selectedFile = fileInputRef.current?.files?.[0];
 
             if (!titleValue) {
                 dispatch({
                     type: ActionTypes.SetTitleError,
-                    payload: 'Title is required',
+                    payload: "Title is required",
                 });
                 return;
             }
@@ -92,7 +92,7 @@ function AddPost() {
             if (!selectedFile) {
                 dispatch({
                     type: ActionTypes.SetFileError,
-                    payload: 'File is required',
+                    payload: "File is required",
                 });
                 return;
             }
@@ -100,23 +100,23 @@ function AddPost() {
             if (!contentValue) {
                 dispatch({
                     type: ActionTypes.SetContentError,
-                    payload: 'Content is required',
+                    payload: "Content is required",
                 });
                 return;
             }
 
             const link = document.getElementById(
-                'post-img',
+                "post-img",
             ) as HTMLInputElement;
             const replaceLink = getFileNameFromPath(link.value);
             const newPost = {
                 title: titleValue,
                 img: replaceLink,
-                tag: 'Technology',
+                tag: "Technology",
                 time: formatDate(new Date().toString()),
                 user: {
-                    username: 'Name',
-                    avatar: 'img-user3.png',
+                    username: "Name",
+                    avatar: "img-user3.png",
                 },
                 content: contentValue,
             };
@@ -131,10 +131,10 @@ function AddPost() {
 
                 await conFigData.updateCount(newTotal);
                 setTotal(newTotal);
-                alert('Add Post Correct');
-                navigator('/author');
+                alert("Add Post Correct");
+                navigator("/author");
             } catch (error) {
-                console.error('Lỗi khi thêm bài viết:', error);
+                console.error("Lỗi khi thêm bài viết:", error);
             }
         },
         [navigator, posts],
@@ -147,7 +147,7 @@ function AddPost() {
             if (file) {
                 const fileUrl = URL.createObjectURL(file);
                 const imgElement = document.getElementById(
-                    'show-img',
+                    "show-img",
                 ) as HTMLImageElement;
                 imgElement.src = fileUrl;
             }

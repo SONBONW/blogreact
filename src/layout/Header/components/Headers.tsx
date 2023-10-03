@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import logo from '../../../asset/img/logo-header.png';
-import Input from './Search';
-import Dark from './Dark';
-import NavCreate from './LinkCreact';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
+import logo from "../../../asset/img/logo-header.png";
+import Input from "./Search";
+import Dark from "./Dark";
+import NavCreate from "./LinkCreact";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
     const location = useLocation();
@@ -18,9 +18,9 @@ function Header() {
         setCheck(!check);
     };
     useEffect(() => {
-        window.addEventListener('click', handleClickOutside);
+        window.addEventListener("click", handleClickOutside);
         return () => {
-            window.removeEventListener('click', handleClickOutside);
+            window.removeEventListener("click", handleClickOutside);
         };
     }, []);
 
@@ -30,7 +30,7 @@ function Header() {
                 <div className="container-fluid">
                     <a
                         className={`navbar-brand me-auto order-0 d-flex ${
-                            !check ? '' : 'show-logo'
+                            !check ? "" : "show-logo"
                         }`}
                         href="/"
                     >
@@ -42,7 +42,7 @@ function Header() {
                     </a>
                     <button
                         className={`navbar-toggler d-md-none bg-light btn-show-nav ${
-                            !check ? 'd-block' : 'd-none'
+                            !check ? "d-block" : "d-none"
                         }`}
                         type="button"
                         data-bs-toggle="collapse"
@@ -56,7 +56,7 @@ function Header() {
                     <ul
                         id="navbarSupportedContent"
                         className={`navbar-nav mb-lg-0 text-center collapse navbar-collapse d-md-flex ${
-                            !check ? '' : 'show-nav'
+                            !check ? "" : "show-nav"
                         }`}
                     >
                         <li className="nav-item d-sm-none d-flex">
@@ -94,9 +94,9 @@ function Header() {
                             <Link
                                 to="/home"
                                 className={`nav-link ${
-                                    location.pathname === '/home'
-                                        ? 'active'
-                                        : ''
+                                    location.pathname === "/home"
+                                        ? "active"
+                                        : ""
                                 }`}
                             >
                                 Home
@@ -106,9 +106,9 @@ function Header() {
                             <Link
                                 to="/blog"
                                 className={`nav-link ${
-                                    location.pathname === '/blog'
-                                        ? 'active'
-                                        : ''
+                                    location.pathname === "/blog"
+                                        ? "active"
+                                        : ""
                                 }`}
                             >
                                 Blog
@@ -118,9 +118,9 @@ function Header() {
                             <Link
                                 to="/single"
                                 className={`nav-link ${
-                                    location.pathname === '/single'
-                                        ? 'active'
-                                        : ''
+                                    location.pathname === "/single"
+                                        ? "active"
+                                        : ""
                                 }`}
                             >
                                 Single Post
@@ -130,9 +130,9 @@ function Header() {
                             <Link
                                 to="/author"
                                 className={`nav-link ${
-                                    location.pathname === '/author'
-                                        ? 'active'
-                                        : ''
+                                    location.pathname === "/author"
+                                        ? "active"
+                                        : ""
                                 }`}
                             >
                                 Pages
@@ -142,7 +142,7 @@ function Header() {
                             <Link
                                 to="/contact"
                                 className={`nav-link ${
-                                    location.pathname === '/' ? 'active' : ''
+                                    location.pathname === "/" ? "active" : ""
                                 }`}
                             >
                                 Contact
@@ -151,7 +151,7 @@ function Header() {
                     </ul>
                     <form
                         className={`d-flex align-items-center ${
-                            check ? 'show-input' : ''
+                            check ? "show-input" : ""
                         } `}
                         action="#"
                     >

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Home from '../../pages/HomePage';
-import Blog from '../../pages/BlogPage';
-import Single from '../../pages/SinglePage';
-import Author from '../../pages/AuthorPage';
-import Create from '../../pages/CreatePosts';
-import Fix from '../../pages/UpdatePosts';
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "../../pages/HomePage";
+import Blog from "../../pages/BlogPage";
+import Single from "../../pages/SinglePage";
+import Author from "../../pages/AuthorPage";
+import Create from "../../pages/CreatePosts";
+import Fix from "../../pages/UpdatePosts";
 
 const DefautRouter = () => {
     return <Navigate to="/home" />;

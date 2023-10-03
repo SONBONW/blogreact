@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../../asset/img/logo-bottom.png';
-import FormFooter from './FormFooter';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../../asset/img/logo-bottom.png";
+import FormFooter from "./FormFooter";
 
 function Footer() {
     return (
@@ -27,22 +27,22 @@ function Footer() {
                     <h5>Quick Link</h5>
                     <ul>
                         <li>
-                            <Link to={''}>Home</Link>
+                            <Link to={""}>Home</Link>
                         </li>
                         <li>
-                            <Link to={''}>About</Link>
+                            <Link to={""}>About</Link>
                         </li>
                         <li>
-                            <Link to={''}>Blog</Link>
+                            <Link to={""}>Blog</Link>
                         </li>
                         <li>
-                            <Link to={''}>Archived</Link>
+                            <Link to={""}>Archived</Link>
                         </li>
                         <li>
-                            <Link to={''}>Author</Link>
+                            <Link to={""}>Author</Link>
                         </li>
                         <li>
-                            <Link to={''}>Contact</Link>
+                            <Link to={""}>Contact</Link>
                         </li>
                     </ul>
                 </div>
@@ -50,22 +50,22 @@ function Footer() {
                     <h5>Category</h5>
                     <ul>
                         <li>
-                            <Link to={''}>Lifestyle</Link>
+                            <Link to={""}>Lifestyle</Link>
                         </li>
                         <li>
-                            <Link to={''}>Technology</Link>
+                            <Link to={""}>Technology</Link>
                         </li>
                         <li>
-                            <Link to={''}>Travel</Link>
+                            <Link to={""}>Travel</Link>
                         </li>
                         <li>
-                            <Link to={''}>Business</Link>
+                            <Link to={""}>Business</Link>
                         </li>
                         <li>
-                            <Link to={''}>Economy</Link>
+                            <Link to={""}>Economy</Link>
                         </li>
                         <li>
-                            <Link to={''}>Sports</Link>
+                            <Link to={""}>Sports</Link>
                         </li>
                     </ul>
                 </div>
@@ -73,11 +73,11 @@ function Footer() {
             </div>
             <div className="last container custorm-container">
                 <div className="logo-footer">
-                    <Link to={''}>
+                    <Link to={""}>
                         <img className="img-fluid" src={logo} alt="" />
                     </Link>
                     <div>
-                        <Link to={''}>
+                        <Link to={""}>
                             <span>
                                 Meta<strong>Blog</strong>
                             </span>
@@ -90,17 +90,17 @@ function Footer() {
                 </div>
                 <ul>
                     <li className="nav-item">
-                        <Link to={''} className="nav-link">
+                        <Link to={""} className="nav-link">
                             Terms of Use
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={''} className="nav-link">
+                        <Link to={""} className="nav-link">
                             Privacy Policy
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={''} className="nav-link">
+                        <Link to={""} className="nav-link">
                             Cookie Policy
                         </Link>
                     </li>

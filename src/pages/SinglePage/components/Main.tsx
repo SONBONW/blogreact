@@ -1,8 +1,8 @@
-import React from 'react';
-import Advertisement from '../../../components/Advertisement';
-import user1 from '../../../asset/img/img1.png';
-import user2 from '../../../asset/img/img2.png';
-import user from '../../../asset/img/img-user7.png';
+import React from "react";
+import Advertisement from "../../../components/Advertisement";
+import user1 from "../../../asset/img/img1.png";
+import user2 from "../../../asset/img/img2.png";
+import user from "../../../asset/img/img-user7.png";
 
 function MainSingle() {
     return (
@@ -12,7 +12,7 @@ function MainSingle() {
                     <div className="form-introduce">
                         <span className="tag rounded">Technology</span>
                         <h2>
-                            The Impact of Technology on the Workplace: <br />{' '}
+                            The Impact of Technology on the Workplace: <br />{" "}
                             How Technology is Changing
                         </h2>
                         <div className="infor-user">
