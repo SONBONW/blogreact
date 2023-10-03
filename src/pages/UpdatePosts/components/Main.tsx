@@ -76,7 +76,6 @@ function MainUpdate() {
                 <form action="#" className="d-flex flex-column">
                     <h3>Form Update Post</h3>
                     <div>
-                        <h5>Update Title</h5>
                         <label className="input-group mb-3">
                             <span
                                 className="input-group-text"
@@ -97,14 +96,12 @@ function MainUpdate() {
                         </label>
                     </div>
                     <div className="mb-3">
-                        <h5>Update Image</h5>
                         <label
                             htmlFor="post-img"
                             className="form-label form-chosen-file"
                         >
                             Update File
                         </label>
-                        <br />
                         <input
                             className="form-control"
                             type="file"
@@ -112,7 +109,12 @@ function MainUpdate() {
                             multiple
                             onChange={(e) => setFileValue(e.target.value)}
                         />
-                        <img src={imageUrl} alt="" id="show-img" />
+                        <img
+                            src={imageUrl}
+                            alt=""
+                            id="show-img"
+                            className="img-fluid"
+                        />
                     </div>
                     <div className="form-floating">
                         <textarea

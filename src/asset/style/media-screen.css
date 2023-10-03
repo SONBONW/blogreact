@@ -18,6 +18,10 @@
   .nav-header ul {
     margin-right: 105px;
   }
+
+  #show-img {
+    padding-left: 350px;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -124,6 +128,10 @@
     border-radius: 0 5px 5px 0 !important;
   }
 
+  /*Img Choose*/
+  #show-img {
+    padding-left: 100px;
+  }
 
   /*Main Create Post*/
   .form-create form {
@@ -222,6 +230,11 @@
     border: none;
   }
 
+  /*Img Choose*/
+  #show-img {
+    padding-left: 20px;
+  }
+
   /*Footer*/
 
   .last {
@@ -234,9 +247,6 @@
   /*BOOTSTRAP*/
 
   /*Header*/
-
-
-
   .nav-header ul {
     flex-direction: column !important;
     padding-top: 10px;
@@ -348,6 +358,22 @@
   .create-new-post {
     bottom: 20px !important;
     right: 16px !important;
+  }
+
+  /*Img Create*/
+  #show-img {
+    padding-left: 0;
+  }
+
+  .form-create form div:nth-child(3) {
+    text-align: center;
+  }
+
+  .form-create form div:nth-child(3) label {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    transform: translateX(50%);
   }
 
   /*Footer*/

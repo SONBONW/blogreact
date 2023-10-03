@@ -160,7 +160,6 @@ function AddPost() {
         <form action="#" className="d-flex flex-column">
             <h3>Form Create Post</h3>
             <div>
-                <h5>Creactor Title</h5>
                 <label className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
                         Title
@@ -178,7 +177,6 @@ function AddPost() {
                 <span id="errortitle">{state.titleError}</span>
             </div>
             <div className="mb-3">
-                <h5>Post Image</h5>
                 <label
                     htmlFor="post-img"
                     className="form-label form-chosen-file"
@@ -193,8 +191,12 @@ function AddPost() {
                     ref={fileInputRef}
                     multiple
                 />
-                <br />
-                <img src={`${fileInputRef}`} alt="" id="show-img" />
+                <img
+                    src={`${fileInputRef}`}
+                    alt=""
+                    id="show-img"
+                    className="img-fluid"
+                />
                 <span id="errorimg">{state.fileError}</span>
             </div>
             <div className="form-floating">
@@ -211,7 +213,7 @@ function AddPost() {
             </div>
             <button
                 id="submit"
-                className="btn btn-primary text-center border-0"
+                className="btn btn-primary border-0"
                 onClick={handleSubmit}
             >
                 Create Post

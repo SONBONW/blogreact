@@ -611,6 +611,11 @@ article h4 {
   display: flex;
 }
 
+.form-create h3 {
+  font-weight: var(--font-w6);
+  font-size: 40px;
+}
+
 .form-create .img {
   width: 50%;
   align-items: center;
@@ -626,6 +631,10 @@ article h4 {
   display: none;
 }
 
+#show-img {
+  padding-left: 200px;
+}
+
 .form-chosen-file {
   background-color: var(--btn-primary);
   padding: 6px;
@@ -639,12 +648,7 @@ article h4 {
 .form-create form {
   margin: 0 auto;
   width: 90%;
-  text-align: center;
   padding: 20px 10px;
-  border-radius: 12px;
-  background-color: var(--secondary-50);
-  border: 1px solid var(--secondary-100);
-  box-shadow: 6px 16px 17px 10px #181a2a1f;
 }
 
 .form-create form button {
