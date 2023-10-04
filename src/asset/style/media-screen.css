@@ -361,6 +361,10 @@
   }
 
   /*Img Create*/
+  .form-create h3 {
+    font-size: 35px;
+  }
+
   #show-img {
     padding-left: 0;
   }

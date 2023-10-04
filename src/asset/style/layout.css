@@ -645,6 +645,10 @@ article h4 {
   cursor: pointer;
 }
 
+.form-create h6 {
+  color: var(--secondary-600);
+}
+
 .form-create form {
   margin: 0 auto;
   width: 90%;
@@ -1028,6 +1032,10 @@ strong {
 
 .changecolor .form-floating h6 {
   background-color: var(--secondary-800) !important;
+}
+
+.changecolor #title::placeholder {
+  color: var(--var-color-white);
 }
 
 /*Dark Single Post*/
