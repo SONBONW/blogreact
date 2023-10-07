@@ -906,6 +906,27 @@ strong {
   display: none;
 }
 
+/*Connect Wallet*/
+.wallet-connect-button button {
+  background-color: var(--red);
+}
+
+.wallet-disconnect-button button {
+  background-color: var(--btn-primary);
+}
+
+.wallet-disconnect-button button,
+.wallet-connect-button button {
+  position: fixed;
+  top: 75px;
+  right: 20px;
+  padding: 5px;
+  border: none;
+  z-index: 1;
+  border-radius: 100px;
+  color: var(--var-color-white);
+}
+
 /*Background-Dark*/
 
 .changecolor {

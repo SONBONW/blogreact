@@ -9,14 +9,17 @@ import "./asset/style/media-screen.css";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Content from "./layout/Content";
+import Profile from "./configs/config";
 
 const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <Header />
-            <Content />
-            <Footer />
+            <Profile>
+                <Header />
+                <Content />
+                <Footer />
+            </Profile>
         </BrowserRouter>
     </React.StrictMode>,
 );

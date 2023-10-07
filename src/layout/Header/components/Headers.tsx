@@ -4,6 +4,7 @@ import Input from "./Search";
 import Dark from "./Dark";
 import NavCreate from "./LinkCreact";
 import { Link, useLocation } from "react-router-dom";
+import LinkWallet from "./LinkWallet";
 
 function Header() {
     const location = useLocation();
@@ -193,6 +194,7 @@ function Header() {
                     </form>
                 </div>
                 <NavCreate />
+                <LinkWallet />
             </nav>
         </header>
     );
