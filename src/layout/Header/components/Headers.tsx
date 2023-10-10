@@ -41,6 +41,7 @@ function Header() {
                             className="d-inline-block align-text-top"
                         />
                     </a>
+                    <LinkWallet />
                     <button
                         className={`navbar-toggler d-md-none bg-light btn-show-nav ${
                             !check ? "d-block" : "d-none"
@@ -194,7 +195,6 @@ function Header() {
                     </form>
                 </div>
                 <NavCreate />
-                <LinkWallet />
             </nav>
         </header>
     );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import DeletePost from "../ButtonDelete";
+import DeletePost from "../Button";
 import conFigData from "../../services/conFigData";
 
 interface GetDataProps {

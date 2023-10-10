@@ -9,7 +9,7 @@ import "./asset/style/media-screen.css";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Content from "./layout/Content";
-import Profile from "./configs/config";
+import Profile from "./configs/Config";
 
 const root = ReactDOM.createRoot(document.getElementById("app") as HTMLElement);
 root.render(

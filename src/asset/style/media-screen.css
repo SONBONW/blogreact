@@ -110,6 +110,14 @@
     margin-left: 10px !important;
   }
 
+  .nav-header {
+    flex-wrap: nowrap;
+  }
+
+  .nav-header img {
+    width: 130px;
+  }
+
   /*Input Show*/
   .show-nav {
     display: none !important;
@@ -184,6 +192,7 @@
 @media (min-width: 576px) and (max-width: 767.98px) {
   /*BOOTSTRAP*/
 
+
   /*Main*/
   .form-introduce {
     left: 30px;
@@ -222,7 +231,7 @@
   .show-input,
   .show-input div,
   .show-input input {
-    width: 100% !important;
+    width: 88% !important;
   }
 
   .show-input .item-ipt:first-child button {
@@ -289,8 +298,12 @@
   }
 
   .vector {
-    top: 11px !important;
+    top: 12px !important;
     left: 12px !important;
+  }
+
+  .nav-header img {
+    width: 120px;
   }
 
   /*Main*/
@@ -477,7 +490,7 @@
 
   .nav-header {
     margin: 0 auto !important;
-    padding: 10px 0;
+    padding: 18px 0;
   }
 
   .nav-header ul {
@@ -502,11 +515,11 @@
   }
 
   .item-ipt:last-child {
-    order: 2;
+    order: 3;
   }
 
   .btn-show-nav {
-    order: 3;
+    order: 4;
   }
 
   .nav-link {

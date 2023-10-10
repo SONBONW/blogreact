@@ -915,16 +915,29 @@ strong {
   background-color: var(--btn-primary);
 }
 
+.wallet-connect-button,
+.wallet-disconnect-button {
+  order: 2;
+}
+
 .wallet-disconnect-button button,
 .wallet-connect-button button {
-  position: fixed;
-  top: 75px;
-  right: 20px;
+  position: relative;
+  margin: 0 10px 0 5px;
   padding: 5px;
   border: none;
-  z-index: 1;
   border-radius: 100px;
   color: var(--var-color-white);
+}
+
+/*Balance Native Coin*/
+.coin {
+  position: absolute;
+  color: var(--red);
+}
+
+.coin p {
+  margin: 0;
 }
 
 /*Background-Dark*/

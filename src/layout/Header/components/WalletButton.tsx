@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
+import BalanceCoin from "../../../configs/BalanceCoin";
 
 const ConnectWallet = () => {
     const { connect, connectors, isLoading, pendingConnector } = useConnect();
@@ -15,7 +16,7 @@ const ConnectWallet = () => {
                         key={connector.id}
                         onClick={() => connect({ connector })}
                     >
-                        Connect
+                        LgIn
                         {isLoading &&
                             connector.id === pendingConnector?.id &&
                             " (connecting)"}
@@ -23,7 +24,8 @@ const ConnectWallet = () => {
                 ))
             ) : (
                 <div className="wallet-disconnect-button">
-                    <button onClick={() => disconnect()}> LogOut</button>
+                    <button onClick={() => disconnect()}> LgOt</button>
+                    <BalanceCoin walletAddress={address} />
                 </div>
             )}
         </div>
