@@ -1,32 +1,31 @@
 import {
     createConfig,
     configureChains,
-    mainnet,
     WagmiConfig,
     // useConfig,
 } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { polygon } from "viem/chains";
+import { bscTestnet } from "viem/chains";
 import React from "react";
 
 // import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 // import { InjectedConnector } from "wagmi/connectors/injected";
 // import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
-const { publicClient, webSocketPublicClient } = configureChains(
-    [mainnet],
+const { publicClient, webSocketPublicClient, chains } = configureChains(
+    [bscTestnet],
     // [publicProvider()],
     [(alchemyProvider({ apiKey: "yourAlchemyApiKey" }), publicProvider())],
 );
 
 // Set up wagmi config
 const config = createConfig({
-    autoConnect: false,
+    autoConnect: true,
     connectors: [
         new MetaMaskConnector({
-            chains: [mainnet, polygon],
+            chains: chains,
             options: {
                 shimDisconnect: true,
                 UNSTABLE_shimOnConnectSelectAccount: true,

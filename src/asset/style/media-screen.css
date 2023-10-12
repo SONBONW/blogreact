@@ -22,13 +22,21 @@
   #show-img {
     padding-left: 350px;
   }
+
+  .btn-max-coin {
+    bottom: 91px;
+    right: 20px;
+  }
 }
 
 @media (max-width: 1400px) {
-  /*Clean Br*/
-  /* .form-introduce br {
-		content: "";
-	} */
+
+  /*Link Transaction*/
+  .btn-max-coin {
+    right: 13px;
+    bottom: 91px;
+  }
+
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -39,6 +47,15 @@
 
   .item-ipt:first-child {
     margin-right: 20px !important;
+  }
+
+  /*Link Transaction*/
+  .transaction-coin input {
+    width: 80%;
+  }
+
+  .btn-max-coin {
+    right: 91px;
   }
 
   /*Posts*/
@@ -84,7 +101,12 @@
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  /*BOOTSTRAP*/
+
+  /*Link Transaction*/
+  .btn-max-coin {
+    right: 76px;
+    bottom: 81px;
+  }
 
   /*Main*/
   .width-750 {
@@ -393,6 +415,11 @@
     transform: translateX(50%);
   }
 
+  /*Link Transaction*/
+  .link-btn-transaction {
+    right: 16px;
+  }
+
   /*Footer*/
 
   .form-footer {
@@ -446,6 +473,8 @@
     background-color: var(--secondary-100-f);
   }
 
+
+
   /*Main*/
 
   .title {
@@ -486,7 +515,14 @@
 }
 
 @media (max-width: 767px) {
-  /*BOOTSTRAP*/
+
+  /*Link Transaction*/
+  .btn-max-coin {
+    right: 4px;
+    bottom: 81px;
+  }
+
+  /*Header*/
 
   .nav-header {
     margin: 0 auto !important;
@@ -528,7 +564,6 @@
 
   .nav-item .nav-link {
     margin-right: 0 !important;
-    color: white;
   }
 
   .nav-header div a img {
@@ -654,6 +689,7 @@
     order: 3;
   }
 
+
   /*Last Footer*/
 
   .last {
@@ -676,4 +712,10 @@
     border: none !important;
     padding: 0 2px !important;
   }
+
+  /*Link Transaction*/
+  .transaction-coin input {
+    width: 100%;
+  }
+
 }

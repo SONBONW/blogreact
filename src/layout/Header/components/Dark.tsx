@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 interface InputProps {
     handler: boolean;
 }
-function Dark({ handler }: InputProps) {
+function Dark(props: InputProps) {
+    const handler = props;
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {

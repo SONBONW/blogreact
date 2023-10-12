@@ -15,9 +15,10 @@ function Header() {
             setCheck(false);
         }
     };
-    const handlerClick = () => {
+    const handlerClickCheck = () => {
         setCheck(!check);
     };
+
     useEffect(() => {
         window.addEventListener("click", handleClickOutside);
         return () => {
@@ -165,7 +166,7 @@ function Header() {
                             <button
                                 className="border-0"
                                 onClick={() => {
-                                    handlerClick();
+                                    handlerClickCheck();
                                 }}
                             >
                                 <svg

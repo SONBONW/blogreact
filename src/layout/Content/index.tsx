@@ -6,6 +6,7 @@ import Single from "../../pages/SinglePage";
 import Author from "../../pages/AuthorPage";
 import Create from "../../pages/CreatePosts";
 import Fix from "../../pages/UpdatePosts";
+import Tranfer from "../../pages/TransferPage";
 
 const DefautRouter = () => {
     return <Navigate to="/home" />;
@@ -21,6 +22,7 @@ const Content: React.FunctionComponent = () => {
             <Route path="/author/*" element={<Author />} />
             <Route path="/create/*" element={<Create />} />
             <Route path="/fix/*" element={<Fix />} />
+            <Route path="/transfer/*" element={<Tranfer />} />
             <Route
                 path="/contact/*"
                 element={
