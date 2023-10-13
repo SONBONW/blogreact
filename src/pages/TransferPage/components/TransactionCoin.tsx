@@ -1,24 +1,38 @@
 import React, { useState } from "react";
 import Web3 from "web3";
-import { useBalanceNative } from "../../../hooks/useBalanceNative";
+import { useBalance, useContractWrite, useAccount } from "wagmi";
+import wagmigotchiABI from "../../../abierc20.json";
+import { parseEther } from "viem";
 
 function TransferFunds() {
-    const [address, setAddress] = useState("");
+    const account = useAccount();
+    const [toAddress, setToAddress] = useState("");
     const [amount, setAmount] = useState("");
     const [errorAddress, setErrorAddress] = useState("");
     const [errorAmount, setErrorAmount] = useState("");
-    const { balance, symbol } = useBalanceNative();
+    const balanceObj = useBalance({
+        address: account.address,
+        token: "0x9ba4a496730618b21103808b03d29e34832cdf5a",
+    });
 
+    const { formatted: balance } = balanceObj.data as any;
+
+    const { write } = useContractWrite({
+        address: "0x9ba4a496730618b21103808b03d29e34832cdf5a",
+        abi: wagmigotchiABI,
+        functionName: "transfer",
+        args: [toAddress, parseEther(amount)],
+    });
     const handleTransfer = async () => {
         try {
+            write();
         } catch (error) {
             console.error("Lỗi khi chuyển tiền:", error);
         }
     };
-    // Kiểm tra điều kiện để vô hiệu hóa nút "Chuyển Tiền"
     let isButtonDisabled;
     if (
-        Web3.utils.isAddress(address) &&
+        Web3.utils.isAddress(toAddress) &&
         amount !== "" &&
         parseFloat(amount) > 0 &&
         Number(amount) <= Number(balance)
@@ -40,7 +54,7 @@ function TransferFunds() {
                 className="input-address"
                 // value={address}
                 onChange={(e) => {
-                    setAddress(e.target.value);
+                    setToAddress(e.target.value);
                     if (!Web3.utils.isAddress(e.target.value)) {
                         setErrorAddress("Address is validate");
                     } else {

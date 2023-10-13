@@ -16,7 +16,6 @@ import React from "react";
 
 const { publicClient, webSocketPublicClient, chains } = configureChains(
     [bscTestnet],
-    // [publicProvider()],
     [(alchemyProvider({ apiKey: "yourAlchemyApiKey" }), publicProvider())],
 );
 
