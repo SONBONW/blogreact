@@ -412,6 +412,10 @@
     transform: translateX(50%);
   }
 
+  /*Main Transfer*/
+  .btn-tranfer {
+    margin-left: 10px;
+  }
 
   /*Footer*/
 

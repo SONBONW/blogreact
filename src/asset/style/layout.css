@@ -984,6 +984,7 @@ strong {
 }
 
 .wallet-disconnect-button button {
+  margin-right: 12px;
   background-color: var(--btn-primary);
 }
 
@@ -1002,6 +1003,9 @@ strong {
 
 .coin p {
   margin: 0;
+  font-family: var(--font-WorkSansMedium);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 /*Background-Dark*/
