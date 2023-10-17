@@ -15,7 +15,8 @@ function TransferFunds() {
         token: "0x9ba4a496730618b21103808b03d29e34832cdf5a",
     });
 
-    const { formatted: balance } = balanceObj.data as any;
+    // const { formatted: balance } = balanceObj.data as any;
+    const balance = balanceObj.data ? balanceObj.data.formatted : 0;
 
     const { write } = useContractWrite({
         address: "0x9ba4a496730618b21103808b03d29e34832cdf5a",
