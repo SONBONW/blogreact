@@ -1,10 +1,10 @@
 import React from "react";
-import Transaction from "./components/TransactionCoin";
+import LinkWallet from "./components/LinkWallet";
 
 function Transfer() {
     return (
         <main className="container custorm-container px-0">
-            <Transaction />
+            <LinkWallet />
         </main>
     );
 }

@@ -23,12 +23,6 @@ const Content: React.FunctionComponent = () => {
             <Route path="/create/*" element={<Create />} />
             <Route path="/fix/*" element={<Fix />} />
             <Route path="/transfer/*" element={<Tranfer />} />
-            <Route
-                path="/contact/*"
-                element={
-                    <h1 className="no-data">Have not data for page Contact</h1>
-                }
-            />
         </Routes>
     );
 };

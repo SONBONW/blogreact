@@ -31,19 +31,19 @@ const config = createConfig({
             },
         }),
         // new CoinbaseWalletConnector({
-        //     chains: [],
+        //     chains: chains,
         //     options: {
         //         appName: "wagmi",
         //     },
         // }),
         // new WalletConnectConnector({
-        //     chains: [],
+        //     chains: chains,
         //     options: {
         //         projectId: "...",
         //     },
         // }),
         // new InjectedConnector({
-        //     chains: [],
+        //     chains: chains,
         //     options: {
         //         name: "Injected",
         //         shimDisconnect: true,

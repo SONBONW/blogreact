@@ -675,17 +675,8 @@ article h4 {
 }
 
 /*Transaction Coin Wallet*/
-
-.link-btn-transaction {
-  position: fixed;
-  bottom: 100px;
-  right: 28px;
-  border-radius: 100px;
-  width: 50px;
-  height: 50px;
-  background-color: var(--btn-primary);
-  border: none;
-  z-index: 100;
+.wallet-button {
+  margin-top: 15px;
 }
 
 .show-transaction {
@@ -724,7 +715,7 @@ article h4 {
   border: none;
   background-color: var(--btn-primary);
   color: var(--var-color-white);
-  border-radius: 2px;
+  border-radius: 6px;
   padding: 10px;
 }
 
@@ -741,6 +732,12 @@ article h4 {
   color: var(--red);
   font-size: 24px;
   margin: 10px 0;
+}
+
+.input-amount,
+.input-address {
+  border-radius: 6px;
+  border: 1px solid;
 }
 
 /*Footer*/
@@ -976,31 +973,30 @@ strong {
 }
 
 /*Connect Wallet*/
+.wallet-disconnect-button {
+  text-align: end;
+  padding-right: 30px;
+}
+
 .wallet-connect-button {
   background-color: var(--red);
+  text-align: center;
 }
 
 .wallet-disconnect-button button {
   background-color: var(--btn-primary);
 }
 
-.wallet-button {
-  order: 2;
-}
-
 .wallet-disconnect-button button,
 .wallet-connect-button {
-  position: relative;
-  margin: 0 10px 0 5px;
-  padding: 5px;
+  padding: 10px;
   border: none;
-  border-radius: 100px;
+  border-radius: 6px;
   color: var(--var-color-white);
 }
 
 /*Balance Native Coin*/
 .coin {
-  position: absolute;
   color: var(--red);
 }
 

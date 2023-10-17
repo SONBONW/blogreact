@@ -4,7 +4,6 @@ import Input from "./Search";
 import Dark from "./Dark";
 import NavCreate from "./LinkCreact";
 import { Link, useLocation } from "react-router-dom";
-import LinkWallet from "./LinkWallet";
 
 function Header() {
     const location = useLocation();
@@ -42,7 +41,6 @@ function Header() {
                             className="d-inline-block align-text-top"
                         />
                     </a>
-                    <LinkWallet />
                     <button
                         className={`navbar-toggler d-md-none bg-light btn-show-nav ${
                             !check ? "d-block" : "d-none"
@@ -143,12 +141,14 @@ function Header() {
                         </li>
                         <li className="nav-item item">
                             <Link
-                                to="/contact"
+                                to="/transfer"
                                 className={`nav-link ${
-                                    location.pathname === "/" ? "active" : ""
+                                    location.pathname === "/transfer"
+                                        ? "active"
+                                        : ""
                                 }`}
                             >
-                                Contact
+                                Transfer
                             </Link>
                         </li>
                     </ul>
