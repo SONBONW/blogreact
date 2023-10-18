@@ -978,9 +978,10 @@ strong {
   padding-right: 30px;
 }
 
+
 .wallet-connect-button {
-  background-color: var(--red);
-  text-align: center;
+  background-color: var(--btn-primary);
+  font-size: 35px;
 }
 
 .wallet-disconnect-button button {

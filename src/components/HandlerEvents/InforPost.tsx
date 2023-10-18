@@ -38,7 +38,7 @@ function InforPost({ postStart, postEnd }: GetDataProps) {
         fetchData();
     }, [postStart, postEnd]);
 
-    useEffect(() => {}, [posts]);
+    // useEffect(() => {}, [posts]);
 
     const handleDeletePost = useCallback(
         async (postId: number) => {
